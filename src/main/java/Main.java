@@ -15,11 +15,9 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage){
-//        Label label = new Label("Hello Jobless Otters");
-//        Scene scene = new Scene(label, 400, 200);
-//        stage.setScene(scene);
-        stage.setTitle("Team Jobless Otters");
+        stage.setTitle("Inferior app");
+        stage.setScene(SceneFactory.create(SceneType.LOGIN, stage));
+//        stage.setFullScreen(true);
         stage.show();
-
     }
 }
