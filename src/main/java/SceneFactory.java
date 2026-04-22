@@ -3,6 +3,7 @@
  * @since Assignment: Inferior
  **/
 import javafx.geometry.Pos;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -36,14 +37,28 @@ public class SceneFactory {
 //                stage.setScene((create(SceneType.MAIN, stage)))
 //        );
         GridPane textLayout = new GridPane();
-        textLayout.add(new TextField("Username"), 0, 0);
-        textLayout.add(new TextField("Password"),0, 1);
+//        textLayout.add(new TextField("Username"), 0, 0));
+//
+//        textLayout.add(new TextField("Password"),0, 1);
+//        textLayout.setAlignment(Pos.CENTER);
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Username");
+
+        TextField passwordField = new PasswordField();
+        passwordField.setPromptText("Password");
+
+        textLayout.add(usernameField, 0, 0);
+        textLayout.add(passwordField, 0, 1);
         textLayout.setAlignment(Pos.CENTER);
 
         VBox layout = new VBox(25, title, logWelcome, textLayout, loginbutton, signinButton);
         layout.setAlignment(Pos.CENTER);
 
         return new Scene(layout, 800, 600);
+    }
+    private static Scene Password(){
+        VBox layout2 = new VBox(25);
+        return new Scene(layout2, 800, 600);
     }
 
 
