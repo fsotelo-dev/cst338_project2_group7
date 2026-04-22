@@ -3,4 +3,6 @@
  * Add a new value here whenever you add a new screen!!!!!!
  */
 public enum SceneType {
+    LOGIN
+//    MAIN
 }
