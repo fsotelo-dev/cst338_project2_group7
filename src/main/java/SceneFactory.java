@@ -54,6 +54,10 @@ public class SceneFactory {
 
         return new Scene(layout, 800, 600);
     }
+    private static Scene Password(){
+        VBox layout2 = new VBox(25);
+        return new Scene(layout2, 800, 600);
+    }
 
     public static Scene buildSIGNUPScene(Stage stage){
         //Only gets called when user clicks on Sign Up with a new page
