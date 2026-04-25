@@ -19,6 +19,8 @@ public class SceneFactory {
     public static Scene create(SceneType type, Stage stage){
         return switch(type){
             case LOGIN -> buildLoginScene(stage);
+            case SIGNUP -> buildSIGNUPScene(stage);
+
 //            case MAIN -> buildMAINScene(stage);
         };
     }
@@ -33,20 +35,16 @@ public class SceneFactory {
 
         Button loginbutton = new Button( "      Log in     ");
         Button signinButton = new Button("      Sign up     ");
+        signinButton.setOnAction(e ->
+                stage.setScene(create(SceneType.SIGNUP, stage)));
 //        loginbutton.setOnAction(e ->
 //                stage.setScene((create(SceneType.MAIN, stage)))
 //        );
         GridPane textLayout = new GridPane();
-//        textLayout.add(new TextField("Username"), 0, 0));
-//
-//        textLayout.add(new TextField("Password"),0, 1);
-//        textLayout.setAlignment(Pos.CENTER);
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
-
         TextField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
-
         textLayout.add(usernameField, 0, 0);
         textLayout.add(passwordField, 0, 1);
         textLayout.setAlignment(Pos.CENTER);
@@ -61,6 +59,33 @@ public class SceneFactory {
         return new Scene(layout2, 800, 600);
     }
 
+    public static Scene buildSIGNUPScene(Stage stage){
+        //Only gets called when user clicks on Sign Up with a new page
+        Label title = new Label("Inferior");
+        title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
+        title.setAlignment(Pos.TOP_CENTER);
 
+        Label signUp = new Label("Create account");
+        signUp.setStyle("-fx-font-size:20px; -fx-font-weight: bold;");
+        signUp.setAlignment(Pos.CENTER_RIGHT);
 
+        Button signupButton = new Button("     Sign Up     ");
+        signupButton.setStyle("-fx-border-color: red;");
+
+        GridPane textLayout = new GridPane();
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Username");
+        TextField passwordField = new PasswordField();
+        passwordField.setPromptText("Password");
+        textLayout.add(usernameField, 0, 0);
+        textLayout.add(passwordField, 0, 1);
+        textLayout.setAlignment(Pos.CENTER);
+//        textLayout.add(new TextField("Username"), 0, 0);
+//        textLayout.add(new TextField("Password"),0, 1);
+//        textLayout.setAlignment(Pos.CENTER);
+
+        VBox layout = new VBox(25, title, signUp, textLayout, signupButton);
+        layout.setAlignment(Pos.CENTER);
+        return new Scene(layout, 800, 600);
+    }
 }

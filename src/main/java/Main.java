@@ -7,14 +7,15 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+//private DatabaseManager db;
 
 public class Main extends Application{
-    public static void main(String[] args) {
-        launch();
-    }
-
+//    public static void main(String[] args) {
+//        launch();
+//    }
     @Override
     public void start(Stage stage){
+//        db = new DatabaseManager(); //opens creates app.db
         stage.setTitle("Inferior app");
         stage.setScene(SceneFactory.create(SceneType.LOGIN, stage));
 //        stage.setFullScreen(true);
