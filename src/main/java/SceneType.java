@@ -4,6 +4,7 @@
  */
 public enum SceneType {
     LOGIN,
-    SIGNUP
-//    MAIN
+    MAIN,
+    SIGNUP,
+    Profile;
 }
