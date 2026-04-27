@@ -35,19 +35,19 @@ public class DatabaseManager {
         // Text blocks ( Java 15+) keep multi - line SQL readable
         //Every user has its own table
         String userTable = """
-            CREATE TABLE IF NOT EXITS items (
+            CREATE TABLE IF NOT EXISTS users (
                 id            INTEGER PRIMARY KEY AUTOINCREMENT,
                 username      TEXT    NOT NULL,
                 password      TEXT    NOT NULL,
-                rank          TEXT    NOT NULL DEFAULT 0,
+                rank          TEXT    NOT NULL DEFAULT 'low',
                 done          INTEGER NOT NULL DEFAULT 0,
-                created       TEXT    DEFAULT(datatime('now'))
+                created       TEXT    DEFAULT(datetime('now'))
             )
             """;
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(userTable) ;
         } catch (SQLException e) {
-            System.err.println(" createTables failed : " + e . getMessage () ) ;
+            System.err.println(" userTables failed : " + e . getMessage () ) ;
         }
     }
 
@@ -55,19 +55,21 @@ public class DatabaseManager {
         // Text blocks ( Java 15+) keep multi - line SQL readable
         //Every user has its own table
         String postTable = """
-            CREATE TABLE IF NOT EXITS items (
+            CREATE TABLE IF NOT EXISTS posts (
                 id            INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id       INTEGER NOT NULL            
                 username      TEXT    NOT NULL,
                 title         TEXT    NOT NULL,
                 body          TEXT    NOT NULL,
                 done          INTEGER NOT NULL DEFAULT 0,
-                created       TEXT    DEFAULT(datatime('now'))
+                created       TEXT    DEFAULT(datetime('now'))
+                FOREIGN KEY (user_id) REFERENCES users(id)
             )
             """;
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(postTable) ;
         } catch (SQLException e) {
-            System.err.println(" createTables failed : " + e . getMessage () ) ;
+            System.err.println(" postTables failed : " + e . getMessage () ) ;
         }
     }
 
@@ -81,19 +83,19 @@ public class DatabaseManager {
         }
     }
 
-    public List<String> getAllItems(){
+    public List<String> getAllItems() {
         List<String> items = new ArrayList<>();
-        String sql =  "SELECT name FROM items WHERE done = 0 ORDER BY created DESC";
+        String sql = "SELECT name FROM items WHERE done = 0 ORDER BY created DESC";
 
         //Try wtih resources closes both Statement and ResultSet sutomatically
-        try (Statement   stmt =  connection.createStatement();
-             ResultSet   rs   =  stmt.executeQuery(sql)){
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {                              //move to next row
                 items.add(rs.getString("name")); //read column by name
             }
-        }catch(SQLException e){
-            System.err.println("getAllItems failed: "+ e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("getAllItems failed: " + e.getMessage());
         }
         return items;
     }
