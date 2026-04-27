@@ -31,6 +31,7 @@ public class DatabaseFunctionTest {
     public void testInsertUser(){
         boolean test = df.insertUser("","" );
         assertTrue(test);
+
     }
 
     @Test
