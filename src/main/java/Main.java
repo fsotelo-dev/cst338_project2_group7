@@ -1,5 +1,5 @@
 /**
- * @author Freddy Sotelo
+ * @author Inferior
  * created: 4/20/26
  * @since Assignment: Default (Template) Project
  **///TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
