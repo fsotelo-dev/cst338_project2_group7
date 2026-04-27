@@ -52,6 +52,9 @@ public class DatabaseFunction {
     //change a users password
     public boolean updatePassword(String username, String newPassword) {
         String sql = "UPDATE users SET password = ? WHERE username = ?";
+        if(username.isEmpty()||newPassword.isEmpty()){
+            return false;
+        }
         try{
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, newPassword);

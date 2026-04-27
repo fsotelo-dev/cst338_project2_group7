@@ -21,10 +21,16 @@ public class DatabaseFunctionTest {
         df = new DatabaseFunction(connection);
     }
 
+//    @Test
+//    public void testInsertUser() {
+//        boolean result = df.insertUser("Devin", "password");
+//        assertTrue(result);
+//    }
+
     @Test
-    public void testInsertUser() {
-        boolean result = df.insertUser("Devin", "password");
-        assertTrue(result);
+    public void testInsertUser(){
+        boolean test = df.insertUser("","" );
+        assertTrue(test);
     }
 
     @Test
