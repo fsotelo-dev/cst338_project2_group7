@@ -85,6 +85,7 @@ public class DatabaseManager {
         List<String> items = new ArrayList<>();
         String sql =  "SELECT name FROM items WHERE done = 0 ORDER BY created DESC";
 
+
         //Try wtih resources closes both Statement and ResultSet sutomatically
         try (Statement   stmt =  connection.createStatement();
              ResultSet   rs   =  stmt.executeQuery(sql)){
