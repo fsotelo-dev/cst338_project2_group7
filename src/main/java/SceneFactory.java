@@ -17,8 +17,7 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 
-public class SceneFactory {
-
+public class SceneFactory{
 //    method is the public entry point method creates scene by SceneType in enum class
 
     public static Scene create(SceneType type, Stage stage){
@@ -49,8 +48,10 @@ public class SceneFactory {
         GridPane textLayout = new GridPane();
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
+
         TextField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
+
         textLayout.add(usernameField, 0, 0);
         textLayout.add(passwordField, 0, 1);
         textLayout.setAlignment(Pos.CENTER);
@@ -59,10 +60,6 @@ public class SceneFactory {
         layout.setAlignment(Pos.CENTER);
 
         return new Scene(layout, 800, 600);
-    }
-    private static Scene Password(){
-        VBox layout2 = new VBox(25);
-        return new Scene(layout2, 800, 600);
     }
 
     public static Scene buildSIGNUPScene(Stage stage){
@@ -90,15 +87,34 @@ public class SceneFactory {
         textLayout.add(usernameField, 0, 0);
         textLayout.add(passwordField, 0, 1);
         textLayout.setAlignment(Pos.CENTER);
-//        textLayout.add(new TextField("Username"), 0, 0);
-//        textLayout.add(new TextField("Password"),0, 1);
-//        textLayout.setAlignment(Pos.CENTER);
 
         VBox layout = new VBox(25, title, signUp, textLayout, signupButton,loginpage);
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
-    public static Scene buildMAINScene(Stage stage){
+
+    public static Scene buildProfilePage(Stage stage){
+        Label title = new Label("Inferior");
+        title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
+
+        Circle circle = new Circle(50);
+        circle.setFill(Color.WHITE);
+
+
+        Rectangle box = new Rectangle(200, 100);
+        box.setFill(Color.WHITE);
+
+        Button home = new Button("Home");
+        home.setOnAction(e ->
+                stage.setScene(create(SceneType.MAIN, stage)));
+        home.setAlignment(Pos.BOTTOM_RIGHT);
+
+        VBox layout = new VBox(20, title, circle, box, home);
+        layout.setAlignment(Pos.CENTER);
+        return new Scene(layout, 800, 600);
+    }
+
+    public static Scene buildMAINScene(Stage stage) {
         Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
 
@@ -111,14 +127,14 @@ public class SceneFactory {
         sidebar.setStyle("-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 0 1 0 0;");
 
         // SideBar Buttons
-        Button homeBtn     = new Button("🏠  Home");
-        Button profileBtn  = new Button("👤  Profile");
+        Button homeBtn = new Button("🏠  Home");
+        Button profileBtn = new Button("👤  Profile");
         Button settingsBtn = new Button("⚙️   Settings");
-        Button logoutBtn   = new Button("↩  Log Out");
+        Button logoutBtn = new Button("↩  Log Out");
 
         //Buttons Funtionality
-        homeBtn.setOnAction(e->
-                stage.setScene(create(SceneType.SIGNUP,stage)));
+        homeBtn.setOnAction(e ->
+                stage.setScene(create(SceneType.SIGNUP, stage)));
         homeBtn.setMaxWidth(Double.MAX_VALUE);
 
 
@@ -141,29 +157,8 @@ public class SceneFactory {
         root.setLeft(sidebar);
         root.setCenter(mainContent);
 
-        VBox layout = new VBox(25, title,homeBtn,profileBtn,settingsBtn,logoutBtn);
+        VBox layout = new VBox(25, title, homeBtn, profileBtn, settingsBtn, logoutBtn);
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
-    public static Scene buildProfilePage(Stage stage){
-        Label title = new Label("Inferior");
-        title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
-
-        Circle circle = new Circle(50);
-        circle.setFill(Color.WHITE);
-
-
-        Rectangle box = new Rectangle(200, 100);
-        box.setFill(Color.WHITE);
-
-        Button home = new Button("Home");
-        home.setOnAction(e ->
-                stage.setScene(create(SceneType.MAIN, stage)));
-        home.setAlignment(Pos.BOTTOM_RIGHT);
-
-        VBox layout = new VBox(20, title, circle, box, home);
-        layout.setAlignment(Pos.CENTER);
-        return new Scene(layout, 800, 600);
-    }
-
 }
