@@ -23,7 +23,7 @@ public class SceneFactory{
         return switch(type){
             case LOGIN -> buildLoginScene(stage, db);
             case SIGNUP -> buildSIGNUPScene(stage, db);
-//            case MAIN -> buildMAINScene(stage, db);
+            case MAIN -> buildMAINScene(stage, db);
 //            case PROFILE -> buildProfilePage(stage);
         };
     }
@@ -48,11 +48,18 @@ public class SceneFactory{
         Button signinButton = new Button("      Sign up page    ");
         signinButton.setOnAction(e ->
                 stage.setScene(create(SceneType.SIGNUP, stage, db)));
-//        loginbutton.setOnAction(e ->
-//                db.getUserByUsername(usernameField.getText(),passwordField.getText()));
-//        loginbutton.setOnAction(e ->
-//                stage.setScene((create(SceneType.MAIN, stage, db))));
-//
+
+        Label loginStatus = new Label();
+        loginbutton.setOnAction(e -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            DatabaseFunction dbFunction = new DatabaseFunction(db.getConnection());
+            boolean loggedIn = dbFunction.userLogin(username, password);
+
+            stage.setScene((create(SceneType.MAIN, stage, db)));
+        });
+
         textLayout.add(usernameField, 0, 0);
         textLayout.add(passwordField, 0, 1);
         textLayout.setAlignment(Pos.CENTER);
