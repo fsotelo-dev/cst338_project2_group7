@@ -51,4 +51,18 @@ public class DatabaseFunctionTest {
         boolean result = df.deleteUser("Devin");
         assertTrue(result);
     }
+// test to check if typing the incorrect password makes the login not work
+    @Test
+    public void testLoginWithWrongPassword() {
+        df.insertUser("Devin", "correctPassword");
+        boolean result = df.userLogin("Devin", "wrongPassword");
+        assertFalse(result, "Login should fail with wrong password");
+    }
+// test to check if logging in with the correct password takes user to next page
+    @Test
+    public void testLoginWithCorrectPassword() {
+        df.insertUser("Devin", "correctPassword");
+        boolean result = df.userLogin("Devin", "correctPassword");
+        assertTrue(result, "Login should succeed with correct password");
+    }
 }

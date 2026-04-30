@@ -57,11 +57,16 @@ public class SceneFactory{
             DatabaseFunction dbFunction = new DatabaseFunction(db.getConnection());
             boolean loggedIn = dbFunction.userLogin(username, password);
 
-            stage.setScene((create(SceneType.MAIN, stage, db)));
+            if (loggedIn) {
+                stage.setScene((create(SceneType.MAIN, stage, db)));
+            }else{
+                loginStatus.setText("Incorrect username or password");
+            }
         });
 
         textLayout.add(usernameField, 0, 0);
         textLayout.add(passwordField, 0, 1);
+        textLayout.add(loginStatus, 0, 2);
         textLayout.setAlignment(Pos.CENTER);
 
         VBox layout = new VBox(25, title, logWelcome, textLayout, loginbutton, signinButton);
