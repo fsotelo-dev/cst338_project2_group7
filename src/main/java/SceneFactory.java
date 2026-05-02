@@ -59,7 +59,7 @@ public class SceneFactory{
             String username = usernameField.getText();
             String password = passwordField.getText();
 
-            DatabaseFunction dbFunction = new DatabaseFunction(db.getConnection());
+            UserDAO dbFunction = new UserDAO(db.getConnection());
             boolean loggedIn = dbFunction.userLogin(username, password);
 
             if (loggedIn) {

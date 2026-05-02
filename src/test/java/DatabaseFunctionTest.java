@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DatabaseFunctionTest {
 
-    private DatabaseFunction df;
+    private UserDAO df;
 
     @BeforeEach
     public void setup() throws Exception {
@@ -18,7 +18,7 @@ public class DatabaseFunctionTest {
         Statement stmt = connection.createStatement();
         stmt.execute("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL)");
 
-        df = new DatabaseFunction(connection);
+        df = new UserDAO(connection);
     }
 
 //    @Test
