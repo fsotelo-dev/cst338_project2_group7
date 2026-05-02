@@ -105,5 +105,18 @@ public class DatabaseFunction {
         }
         return false;
     }
+    public int getUserPostCount() {
+        try {
+            String sql = "SELECT * FROM users WHERE Post = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println("getPostCount failed: " + e.getMessage());
+        }
+        return 0;
+    }
 
 }
