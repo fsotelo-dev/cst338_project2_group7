@@ -25,7 +25,7 @@ public class SceneFactory{
             case SIGNUP -> buildSIGNUPScene(stage);
             case MAIN -> buildMAINScene(stage);
             case PROFILE -> buildProfilePage(stage);
-            case SETTINGS -> buildSettingsPage(stage);
+            case SETTINGS -> buildSettingPage(stage);
         };
     }
 
@@ -46,7 +46,7 @@ public class SceneFactory{
         //FOR TESTING PURPOSES
         Button test = new Button("Test");
         test.setOnAction(e ->
-                stage.setScene(create(SceneType.MAIN, stage)));
+                SceneManager.getInstance().navigateTo(SceneType.MAIN));
         test.setAlignment(Pos.TOP_LEFT);
 
         GridPane textLayout = new GridPane();
@@ -59,7 +59,7 @@ public class SceneFactory{
         Button loginbutton = new Button( "      Log in     ");
         Button signinButton = new Button("      Sign up page    ");
         signinButton.setOnAction(e ->
-                stage.setScene(create(SceneType.SIGNUP, stage)));
+                SceneManager.getInstance().navigateTo(SceneType.SIGNUP));
 
         Label loginStatus = new Label();
         loginbutton.setOnAction(e -> {
@@ -203,7 +203,7 @@ public class SceneFactory{
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
-    public static Scene buildSettingPage(Stage stage, DatabaseManager db){
+    public static Scene buildSettingPage(Stage stage){
         Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
 
@@ -213,7 +213,7 @@ public class SceneFactory{
 
         Button home = new Button("Home");
         home.setOnAction(e ->
-                SceneManager.getInstance().navigateTo(SceneType.MAIN)));
+                SceneManager.getInstance().navigateTo(SceneType.MAIN));
         home.setAlignment(Pos.BOTTOM_RIGHT);
 
         VBox layout = new VBox(20, title, box, home);
