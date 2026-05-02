@@ -63,7 +63,8 @@ public class SceneFactory{
             boolean loggedIn = dbFunction.userLogin(username, password);
 
             if (loggedIn) {
-                stage.setScene((create(SceneType.MAIN, stage)));
+                SceneManager.getInstance().navigateTo(SceneType.MAIN);
+//                stage.setScene((create(SceneType.MAIN, stage)));
             }else{
                 loginStatus.setText("Incorrect username or password");
             }
@@ -79,18 +80,6 @@ public class SceneFactory{
 
         return new Scene(layout, 800, 600);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static Scene buildSIGNUPScene(Stage stage){
         DatabaseManager db = DatabaseManager.getInstance();
@@ -118,7 +107,9 @@ public class SceneFactory{
                 return;
             }
             db.insertItems(usernameField.getText(), passwordField.getText());
-            stage.setScene(create(SceneType.LOGIN, stage));
+
+            SceneManager.getInstance().navigateTo(SceneType.LOGIN);
+//            stage.setScene(create(SceneType.LOGIN, stage));
         });
         textLayout.add(usernameField, 0, 0);
         textLayout.add(passwordField, 0, 1);
@@ -127,7 +118,9 @@ public class SceneFactory{
 
         Button backTologinpage = new Button("Back to Login");
         backTologinpage.setOnAction(e->
-                stage.setScene(create(SceneType.LOGIN,stage)));
+
+                SceneManager.getInstance().navigateTo(SceneType.LOGIN));
+//                stage.setScene(create(SceneType.LOGIN,stage)));
         backTologinpage.setAlignment(Pos.BOTTOM_RIGHT);
 
         VBox layout = new VBox(25, title, signUp, textLayout, signupButton,backTologinpage);
@@ -176,7 +169,8 @@ public class SceneFactory{
 
         //Buttons Funtionality
         homeBtn.setOnAction(e ->
-                stage.setScene(create(SceneType.SIGNUP, stage)));
+                SceneManager.getInstance().navigateTo(SceneType.SIGNUP));
+//                stage.setScene(create(SceneType.SIGNUP, stage)));
         homeBtn.setMaxWidth(Double.MAX_VALUE);
 //        profileBtn.setMaxWidth(Double.MAX_VALUE);
 //        profileBtn.setOnAction(e ->
