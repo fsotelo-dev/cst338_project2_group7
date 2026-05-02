@@ -15,9 +15,8 @@ public class Main extends Application{
     }
     @Override
     public void start(Stage stage){
-     DatabaseManager db = new DatabaseManager(); //opens creates app.db
         stage.setTitle("Inferior app");
-        stage.setScene(SceneFactory.create(SceneType.LOGIN, stage,db));
+        stage.setScene(SceneFactory.create(SceneType.LOGIN, stage));
 //        stage.setFullScreen(true);
         stage.show();
     }

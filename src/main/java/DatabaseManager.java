@@ -9,8 +9,12 @@ public class DatabaseManager {
 
     private static final String DB_URL = "jdbc:sqlite:app.db";
     private Connection connection;
+    private static DatabaseManager instance;
 
-    public DatabaseManager(){
+
+
+
+    private DatabaseManager(){
         try{
 //           open (creates) app.db in the project root
             connection = DriverManager.getConnection(DB_URL);
@@ -21,6 +25,13 @@ public class DatabaseManager {
         }
     }
 
+
+    public static DatabaseManager getInstance(){
+        if (instance==null){
+            instance = new DatabaseManager();
+        }
+        return instance;
+    }
     public Connection getConnection() {
         return connection;
     }
