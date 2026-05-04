@@ -6,5 +6,6 @@ public enum SceneType {
     LOGIN,
     MAIN,
     SIGNUP,
-//    PROFILE;
+    PROFILE,
+    SETTINGS;
 }
