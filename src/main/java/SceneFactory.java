@@ -2,6 +2,7 @@
  * created: 4/21/26
  * @since Assignment: Inferior
  **/
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -24,9 +25,8 @@ public class SceneFactory{
             case LOGIN -> buildLoginScene(stage);
             //case LOGIN -> new LoginController().buildScene();
             case SIGNUP -> new SignupController().buildScene();
-            case MAIN -> new MainController().buildScene();
-
-//            case MAIN -> buildMAINScene(stage);
+//            case MAIN -> new MainController().buildScene();
+            case MAIN -> buildMAINScene(stage);
             case PROFILE -> buildProfilePage(stage);
             case SETTINGS -> buildSettingPage(stage);
         };
@@ -181,7 +181,7 @@ public class SceneFactory{
         homeBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
         profileBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.PROFILE));
         settingsBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
-        logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
+        logoutBtn.setOnAction(e -> Platform.exit());
 
 
         VBox sidebar = new VBox();
