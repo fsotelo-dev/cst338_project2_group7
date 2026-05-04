@@ -6,7 +6,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class LoginController {
     public LoginController(){
@@ -45,7 +44,7 @@ public class LoginController {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
 
-                DatabaseFunction dbFunction = new DatabaseFunction(db.getConnection());
+                UserDAO dbFunction = new UserDAO(db.getConnection());
                 boolean loggedIn = dbFunction.userLogin(username, password);
 
                 if (loggedIn) {

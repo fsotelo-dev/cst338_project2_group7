@@ -1,11 +1,11 @@
 import java.sql.Connection;
 import java.sql.*;
 
-public class DatabaseFunction {
+public class UserDAO {
 
     private Connection connection;
     // constructor that connects to DatabaseManager
-    public DatabaseFunction(Connection connection) {
+    public UserDAO(Connection connection) {
         this.connection = connection;
     }
 
