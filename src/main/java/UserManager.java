@@ -1,9 +1,7 @@
-
-
-
 public class UserManager {
     private String currentUser;
     private final UserDAO userDAO;
+
 
 
     public UserManager(UserDAO userDAO){

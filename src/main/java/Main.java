@@ -10,15 +10,20 @@ import javafx.stage.Stage;
 //private DatabaseManager db;
 
 public class Main extends Application{
+
+    public static UserManager userManager;
     public static void main(String[] args) {
         launch();
     }
     @Override
     public void start(Stage stage){
+
+        DatabaseManager.getInstance();
+        userManager = new UserManager(new UserDAO());
         SceneManager.init(stage); //initialize singleton
         SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         stage.setTitle("Inferior app");
-//        stage.setScene(SceneFactory.create(SceneType.LOGIN, stage));
+//        stage.setScene(scenes.SceneFactory.create(SceneType.LOGIN, stage));
 //        stage.setFullScreen(true);
         stage.show();
     }

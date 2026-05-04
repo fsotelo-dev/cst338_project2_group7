@@ -12,11 +12,8 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
-
-import java.awt.*;
 
 public class SceneFactory{
 //    method is the public entry point method creates scene by SceneType in enum class
@@ -33,7 +30,7 @@ public class SceneFactory{
     }
 
     public static Scene buildLoginScene(Stage stage) {
-            DatabaseManager db = DatabaseManager.getInstance();
+//            DatabaseManager db = DatabaseManager.getInstance();
             Label title = new Label("Inferior");
             title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
             title.setAlignment(Pos.TOP_CENTER);
@@ -65,7 +62,7 @@ public class SceneFactory{
                 String username = usernameField.getText();
                 String password = passwordField.getText();
 
-                UserDAO dbFunction = new UserDAO(db.getConnection());
+                UserDAO dbFunction = new UserDAO();
                 boolean loggedIn = dbFunction.userLogin(username, password);
 
                 if (loggedIn) {
