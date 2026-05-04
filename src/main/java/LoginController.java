@@ -44,7 +44,7 @@ public class LoginController {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
 
-                UserDAO dbFunction = new UserDAO(db.getConnection());
+                UserDAO dbFunction = new UserDAO();
                 boolean loggedIn = dbFunction.userLogin(username, password);
 
                 if (loggedIn) {

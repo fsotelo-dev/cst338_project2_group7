@@ -5,8 +5,8 @@ public class UserDAO {
 
     private final Connection connection;
     // constructor that connects to DatabaseManager
-    public UserDAO(Connection connection) {
-        this.connection = connection;
+    public UserDAO() {
+        this.connection = DatabaseManager.getInstance().getConnection();
     }
 
     // ToDo: insertUser(String , String )
