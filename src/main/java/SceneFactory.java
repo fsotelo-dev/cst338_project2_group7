@@ -2,6 +2,7 @@
  * created: 4/21/26
  * @since Assignment: Inferior
  **/
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -31,7 +32,63 @@ public class SceneFactory{
     }
 
     public static Scene buildLoginScene(Stage stage){
-        VBox layout = new VBox(25);
+        DatabaseManager db = DatabaseManager.getInstance();
+        Label title = new Label("Inferior");
+        title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
+        title.setAlignment(Pos.TOP_CENTER);
+
+        Label logWelcome = new Label("Log into Inferior");
+        logWelcome.setStyle("-fx-font-size:20px; -fx-font-weight: bold;");
+        logWelcome.setAlignment(Pos.CENTER_LEFT);
+
+        //FOR TESTING PURPOSES
+        Button test = new Button("Test");
+        test.setOnAction(e ->
+                SceneManager.getInstance().navigateTo(SceneType.MAIN));
+        test.setAlignment(Pos.TOP_LEFT);
+
+        GridPane textLayout = new GridPane();
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Username");
+
+        TextField passwordField = new PasswordField();
+        passwordField.setPromptText("Password");
+
+        Button loginbutton = new Button( "      Log in     ");
+        Button signinButton = new Button("      Sign up page    ");
+        signinButton.setOnAction(e ->
+                SceneManager.getInstance().navigateTo(SceneType.SIGNUP));
+
+        Label loginStatus = new Label();
+        loginbutton.setOnAction(e -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            UserDAO dbFunction = new UserDAO(db.getConnection());
+            boolean loggedIn = dbFunction.userLogin(username, password);
+
+            if (loggedIn) {
+                SceneManager.getInstance().navigateTo(SceneType.MAIN);
+//                stage.setScene((create(SceneType.MAIN, stage)));
+            }else{
+                loginStatus.setText("Incorrect username or password");
+            }
+        });
+        Button postBtn = new Button("Post +1");
+        postBtn.setOnAction(e ->{
+            //UserDAO dbFunction = new UserDAO(db.getConnection());
+            if(postBtn.isPressed()){
+
+            }
+        });
+        textLayout.add(usernameField, 0, 0);
+        textLayout.add(passwordField, 0, 1);
+        textLayout.add(loginStatus, 0, 2);
+        textLayout.setAlignment(Pos.CENTER);
+
+        VBox layout = new VBox(25, title, logWelcome, textLayout, loginbutton, signinButton,test);
+        layout.setAlignment(Pos.CENTER);
+
         return new Scene(layout, 800, 600);
     }
     public static Scene buildSIGNUPScene(Stage stage){
@@ -127,7 +184,7 @@ public class SceneFactory{
         homeBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
         profileBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.PROFILE));
         settingsBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
-        logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
+        logoutBtn.setOnAction(e -> Platform.exit());
 
 
         VBox sidebar = new VBox();
