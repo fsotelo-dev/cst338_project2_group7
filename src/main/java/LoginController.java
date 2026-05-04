@@ -49,7 +49,6 @@ public class LoginController {
 
                 if (loggedIn) {
                     SceneManager.getInstance().navigateTo(SceneType.MAIN);
-//                stage.setScene((create(SceneType.MAIN, stage)));
                 }else{
                     loginStatus.setText("Incorrect username or password");
                 }
