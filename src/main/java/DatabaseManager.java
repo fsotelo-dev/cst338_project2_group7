@@ -92,7 +92,7 @@ public class DatabaseManager {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, name); // column// bind parameter 1 to ’name’
+            pstmt.setString(1, name);
             pstmt.setString(2, password);
 
             pstmt.executeUpdate();
@@ -106,7 +106,6 @@ public class DatabaseManager {
         List<String> items = new ArrayList<>();
         String sql = "SELECT name FROM items WHERE done = 0 ORDER BY created DESC";
 
-        //Try wtih resources closes both Statement and ResultSet sutomatically
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
