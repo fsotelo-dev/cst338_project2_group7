@@ -22,6 +22,7 @@ public class SceneFactory{
     public static Scene create(SceneType type, Stage stage){
         return switch(type){
             case LOGIN -> buildLoginScene(stage);
+            //case LOGIN -> new LoginController().buildScene();
             case SIGNUP -> buildSIGNUPScene(stage);
             case MAIN -> buildMAINScene(stage);
             case PROFILE -> buildProfilePage(stage);
@@ -29,65 +30,10 @@ public class SceneFactory{
         };
     }
 
-
-
-
-
-    private static Scene buildLoginScene(Stage stage){
-        DatabaseManager db = DatabaseManager.getInstance();
-        Label title = new Label("Inferior");
-        title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
-        title.setAlignment(Pos.TOP_CENTER);
-
-        Label logWelcome = new Label("Log into Inferior");
-        logWelcome.setStyle("-fx-font-size:20px; -fx-font-weight: bold;");
-        logWelcome.setAlignment(Pos.CENTER_LEFT);
-
-        //FOR TESTING PURPOSES
-        Button test = new Button("Test");
-        test.setOnAction(e ->
-                SceneManager.getInstance().navigateTo(SceneType.MAIN));
-        test.setAlignment(Pos.TOP_LEFT);
-
-        GridPane textLayout = new GridPane();
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Username");
-
-        TextField passwordField = new PasswordField();
-        passwordField.setPromptText("Password");
-
-        Button loginbutton = new Button( "      Log in     ");
-        Button signinButton = new Button("      Sign up page    ");
-        signinButton.setOnAction(e ->
-                SceneManager.getInstance().navigateTo(SceneType.SIGNUP));
-
-        Label loginStatus = new Label();
-        loginbutton.setOnAction(e -> {
-            String username = usernameField.getText();
-            String password = passwordField.getText();
-
-            DatabaseFunction dbFunction = new DatabaseFunction(db.getConnection());
-            boolean loggedIn = dbFunction.userLogin(username, password);
-
-            if (loggedIn) {
-                SceneManager.getInstance().navigateTo(SceneType.MAIN);
-//                stage.setScene((create(SceneType.MAIN, stage)));
-            }else{
-                loginStatus.setText("Incorrect username or password");
-            }
-        });
-
-        textLayout.add(usernameField, 0, 0);
-        textLayout.add(passwordField, 0, 1);
-        textLayout.add(loginStatus, 0, 2);
-        textLayout.setAlignment(Pos.CENTER);
-
-        VBox layout = new VBox(25, title, logWelcome, textLayout, loginbutton, signinButton,test);
-        layout.setAlignment(Pos.CENTER);
-
+    public static Scene buildLoginScene(Stage stage){
+        VBox layout = new VBox(25);
         return new Scene(layout, 800, 600);
     }
-
     public static Scene buildSIGNUPScene(Stage stage){
         DatabaseManager db = DatabaseManager.getInstance();
         //Only gets called when user clicks on Sign Up with a new page
@@ -134,8 +80,6 @@ public class SceneFactory{
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
-
-
     public static Scene buildProfilePage(Stage stage){
         Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
@@ -143,16 +87,20 @@ public class SceneFactory{
         Circle circle = new Circle(50);
         circle.setFill(Color.WHITE);
 
+        DatabaseManager db = DatabaseManager.getInstance();
 
         Rectangle box = new Rectangle(200, 100);
         box.setFill(Color.WHITE);
+        Label Post = new Label("Post: "+db.getUserPostCount());
+        StackPane infoBox = new StackPane(box, Post);
+        infoBox.setAlignment(Pos.CENTER);
 
         Button home = new Button("Home");
         home.setOnAction(e ->
                 stage.setScene(create(SceneType.MAIN, stage)));
         home.setAlignment(Pos.BOTTOM_RIGHT);
 
-        VBox layout = new VBox(20, title, circle, box, home);
+        VBox layout = new VBox(20, title, circle, infoBox, home);
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
@@ -160,36 +108,31 @@ public class SceneFactory{
         Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
 
+
         HBox topBar = new HBox(title);
         topBar.setStyle("-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 0 0 1 0;");
 
-        // SIDEBAR
-        VBox sidebar = new VBox();
-        sidebar.setPrefWidth(200);
-        sidebar.setStyle("-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 0 1 0 0;");
-
-        // SideBar Buttons
+        // Left SIDEBAR
         Button homeBtn = new Button("⌂ Home");
         Button profileBtn = new Button("👤  Profile");
         Button settingsBtn = new Button("⚙   Settings");
         Button logoutBtn = new Button("⏻ Log Out");
 
-        //Buttons Funtionality
-        homeBtn.setOnAction(e ->
-                SceneManager.getInstance().navigateTo(SceneType.LOGIN));
-//                stage.setScene(create(SceneType.SIGNUP, stage)));
-        homeBtn.setMaxWidth(Double.MAX_VALUE);
-//        profileBtn.setMaxWidth(Double.MAX_VALUE);
-//        profileBtn.setOnAction(e ->
-//                stage.setScene(create(SceneType.PROFILE, stage)));
+        for (Button btn : new Button[]{homeBtn, profileBtn, settingsBtn, logoutBtn}) {
+            btn.setMaxWidth(Double.MAX_VALUE);
+            btn.setStyle("-fx-text-fill: black; " +
+                    "-fx-font-size: 14px; -fx-padding: 12 16;");
+        }
 
-        settingsBtn.setMaxWidth(Double.MAX_VALUE);
-        profileBtn.setOnAction(e ->
-                SceneManager.getInstance().navigateTo(SceneType.PROFILE));
+        homeBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
+        profileBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.PROFILE));
+        settingsBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
+        logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
 
-        logoutBtn.setMaxWidth(Double.MAX_VALUE);
-        logoutBtn.setOnAction(e ->
-                stage.close());
+
+        VBox sidebar = new VBox();
+        sidebar.setPrefWidth(200);
+        sidebar.setStyle("-fx-background-color: #1a1a1a; -fx-border-color: #2a2a2a; -fx-border-width: 0 1 0 0;");
 
         StackPane mainContent = new StackPane();
         mainContent.setStyle("-fx-background-color: #141414;");
@@ -207,16 +150,12 @@ public class SceneFactory{
         Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
 
-        Rectangle box = new Rectangle(200, 100);
-        box.setFill(Color.WHITE);
-
-
         Button home = new Button("Home");
         home.setOnAction(e ->
                 SceneManager.getInstance().navigateTo(SceneType.MAIN));
         home.setAlignment(Pos.BOTTOM_RIGHT);
 
-        VBox layout = new VBox(20, title, box, home);
+        VBox layout = new VBox(20, title, home);
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
