@@ -41,6 +41,7 @@ public class MainController {
 
         root.setCenter(mainContent);
         VBox layout =  new VBox(25, title, homeBtn, profileBtn, settingsBtn, logoutBtn);
+        layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }
 }
