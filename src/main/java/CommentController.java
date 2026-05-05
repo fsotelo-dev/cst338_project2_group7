@@ -2,7 +2,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
 public class CommentController {
-    //Todo: when PostDAO is ready create this controller
     @FXML
     private TextArea commentInput;
 
@@ -17,11 +16,13 @@ public class CommentController {
         String text = commentInput.getText();
 
         if (text == null || text.isEmpty()) {
-            System.out.println("Empty comment");
             return;
         }
 
-        // after go back to post scene
+        CommentDAO commentDAO = new CommentDAO();
+        commentDAO.addComment(selectedPost, "Devin", text);
+
+        // after comment uploaded go back to post scene
         SceneManager.getInstance().navigateTo(SceneType.POST);
     }
 

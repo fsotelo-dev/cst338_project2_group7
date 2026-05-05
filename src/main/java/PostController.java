@@ -22,6 +22,7 @@ public class PostController {
     @FXML
     private Label likeCountLabel;
             private int likeCount = 0;
+    private int selectedPost = 1;
 
     @FXML
     public void initialize() {
@@ -31,9 +32,7 @@ public class PostController {
         postHeadLabel.setText("Test Post Title");
         postBodyLabel.setText("This is a test post loaded from PostController.");
 
-        commentsListView.getItems().add("Freddy: nice post");
-        commentsListView.getItems().add("Angel: this comment loaded correctly");
-        commentsListView.getItems().add("Job: comments are showing");
+        comments();
     }
 
     @FXML
@@ -54,5 +53,12 @@ public class PostController {
 
     @FXML void createComment(){
         SceneManager.getInstance().navigateTo(SceneType.COMMENT);
+    }
+
+    @FXML
+    private void comments() {
+        commentsListView.getItems().clear();
+        CommentDAO commentDAO = new CommentDAO();
+        commentsListView.getItems().addAll(commentDAO.getCommentsByPost(selectedPost));
     }
 }
