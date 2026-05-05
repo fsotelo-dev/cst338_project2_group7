@@ -34,8 +34,8 @@ public class MainController {
         homeBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
         profileBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.PROFILE));
         settingsBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
-        logoutBtn.setOnAction(e -> Platform.exit());
-//        logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
+//        logoutBtn.setOnAction(e -> Platform.exit());
+        logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGOUT));
 
         StackPane mainContent =  new StackPane();
         mainContent.setStyle("-fx-background-color: #141414;");

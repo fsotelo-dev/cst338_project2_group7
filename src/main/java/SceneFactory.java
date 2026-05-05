@@ -32,6 +32,7 @@ public class SceneFactory{
 //                    buildSettingPage(stage);
             case POST -> buildPostScene(stage);
             case COMMENT -> buildCommentScene(stage);
+            case LOGOUT -> new LogoutController().buidScene();
         };
     }
 
