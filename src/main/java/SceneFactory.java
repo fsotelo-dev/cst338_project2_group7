@@ -19,13 +19,13 @@ public class SceneFactory{
 //    method is the public entry point method creates scene by SceneType in enum class
     public static Scene create(SceneType type, Stage stage){
         return switch(type){
-            case LOGIN -> buildLoginScene(stage);
-            //case LOGIN -> new LoginController().buildScene();
+            //ase LOGIN -> buildLoginScene(stage);
+            case LOGIN -> new LoginController().buildScene();
             case SIGNUP -> new SignupController().buildScene();
 //            case MAIN -> new MainController().buildScene();
             case MAIN -> buildMAINScene(stage);
-            case PROFILE -> buildProfilePage(stage);
-            //case PROFILE -> new ProfileController().buildScene();
+            //case PROFILE -> buildProfilePage(stage);
+            case PROFILE -> new ProfileController().buildScene();
             case SETTINGS -> buildSettingPage(stage);
         };
     }
@@ -143,7 +143,7 @@ public class SceneFactory{
 
         Rectangle box = new Rectangle(200, 100);
         box.setFill(Color.WHITE);
-        Label Post = new Label("Post: "+db.getUserPostCount());
+        Label Post = new Label("Post: "+db.getUserPostCount(2));
         StackPane infoBox = new StackPane(box, Post);
         infoBox.setAlignment(Pos.CENTER);
 
