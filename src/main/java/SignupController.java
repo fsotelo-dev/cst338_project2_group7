@@ -14,9 +14,12 @@ import javafx.stage.Stage;
  * @since Assignment: App
  **/
 public class SignupController {
-    private final DatabaseManager db = DatabaseManager.getInstance();
+//    private final DatabaseManager db = DatabaseManager.getInstance();
+    private final UserManager userManager = UserManager.getInstance();
+
 
     public Scene buildScene() {
+
                 Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
         title.setAlignment(Pos.TOP_CENTER);
@@ -39,7 +42,8 @@ public class SignupController {
                 status.setText("Please fill out all fields");
                 return;
             }
-            db.insertItems(usernameField.getText(), passwordField.getText());
+            userManager.signup(usernameField.getText(), passwordField.getText());
+//            db.insertItems(usernameField.getText(), passwordField.getText());
 
             SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         });

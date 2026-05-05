@@ -11,19 +11,20 @@ import javax.swing.*;
 
 public class SettingController {
 
-    private UserManager userManager = UserManager.getInstance(); ;
+    private final UserManager userManager = UserManager.getInstance(); ;
 
 
     public Scene buildScene(){
 //        TITLE
         Label settingLabel = new Label("Setting");
-        settingLabel.setStyle("-fx-text-size: 16px; -fx-padding: 10 20;");
+        settingLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10 20;");
 
 //        Username display (current)
         Label currentUsernameLabel = new Label("Current Username: " + userManager.getCurrentUser());
         currentUsernameLabel.setStyle("-fx-text-fill: white; -fx-padding: 16px;");
 //        username update field
-        TextField newUsername = new TextField("Enter new username");
+        TextField newUsername = new TextField();
+        newUsername.setPromptText("Enter new username");
         newUsername.setStyle("-fx-font-size: 16px; -fx-padding: 10 20;");
 
         Button updateUsernameBtn = new Button("Update Username");
@@ -45,10 +46,11 @@ public class SettingController {
             SceneManager.getInstance().navigateTo(SceneType.MAIN);
         });
 
-        VBox layout = new VBox(25, settingLabel, currentUsernameLabel,newUsername,updateUsernameBtn,usernameMessage,backBtn);
+        VBox layout = new VBox(20, settingLabel, currentUsernameLabel,newUsername,updateUsernameBtn,usernameMessage,backBtn);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #141414");
         return new Scene(layout, 800, 600);
+
     }
 
     public void handleUpdate(TextField newUsername, Label usernameMessage, Label currentUsernameLabel){
