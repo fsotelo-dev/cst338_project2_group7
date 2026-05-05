@@ -159,18 +159,27 @@ public class DatabaseManager {
             System.err.println(" deleteItem failed : " + e.getMessage());
         }
     }
-    public int getUserPostCount() {
+    public int getUserPostCount(int userId) {
         try {
-            String sql = "SELECT * FROM users WHERE Post = ?";
+            String sql = "SELECT COUNT(*) FROM posts WHERE user_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("getPostCount failed: " + e.getMessage());
         }
         return 0;
     }
-
+    public void insertTestPost(int userId) {
+        String sql = "INSERT INTO posts (user_id, username, title, body) VALUES (?, 'testUser', 'Test Title', 'Test Body')";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("insertTestPost failed: " + e.getMessage());
+        }
+    }
 }
