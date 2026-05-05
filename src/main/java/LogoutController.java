@@ -53,25 +53,6 @@ public class LogoutController {
         frame.setAlignment(Pos.CENTER);
         frame.setStyle("-fx-background-color: #141414;");
 
-        logoView.fitHeightProperty().bind(frame.widthProperty().multiply(0.40));
-        logoView.setPreserveRatio(true);
-        root.prefWidthProperty().bind(frame.widthProperty().multiply(0.60));
-
-        title.styleProperty().bind(frame.widthProperty().multiply(0.03).asString(
-                "-fx-text-fill: white; -fx-font-weight:bold;"));
-        logoutStmt.styleProperty().bind(frame.widthProperty().multiply(0.03).asString(
-                "-fx-text-fill: white;"));
-
-        logoutBtn.prefWidthProperty().bind(root.widthProperty().multiply(0.));
-        logoutBtn.prefHeightProperty().bind(root.heightProperty().multiply(0.08));
-
-        gobackBtn.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
-        gobackBtn.prefHeightProperty().bind(root.heightProperty().multiply(0.18));
-//
-//
-
-
-
         return new Scene(frame, 800, 700);
     }
 

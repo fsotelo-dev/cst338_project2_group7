@@ -4,19 +4,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class LoginController {
     private final UserManager userManager = UserManager.getInstance();
     public Scene buildScene(){
-            Label title = new Label("Inferior");
-            title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
-            title.setAlignment(Pos.TOP_CENTER);
+            Image logo = new Image(getClass().getResource("/ImagesInferior/logo3.png").toExternalForm());
+            ImageView logoView = new ImageView(logo);
+            logoView.setFitWidth(320);
+            logoView.setPreserveRatio(true);
+            logoView.setSmooth(true);
 
-            Label logWelcome = new Label("Log into Inferior");
-            logWelcome.setStyle("-fx-font-size:20px; -fx-font-weight: bold; -fx-text-fill: red");
-            logWelcome.setAlignment(Pos.CENTER_LEFT);
+            //Label logWelcome = new Label("Log into Inferior");
+            //logWelcome.setStyle("-fx-font-size:20px; -fx-font-weight: bold; -fx-text-fill: red");
+            //logWelcome.setAlignment(Pos.CENTER_LEFT);
 
             //FOR TESTING PURPOSES
             Button test = new Button("Test");
@@ -59,7 +63,7 @@ public class LoginController {
             textLayout.add(loginStatus, 0, 2);
             textLayout.setAlignment(Pos.CENTER);
 
-            VBox layout = new VBox(25, title, logWelcome, textLayout, loginbutton, signinButton,test);
+            VBox layout = new VBox(25,logoView, textLayout, loginbutton, signinButton,test);
             layout.setStyle("-fx-background-color: #090909");
             layout.setAlignment(Pos.CENTER);
 
