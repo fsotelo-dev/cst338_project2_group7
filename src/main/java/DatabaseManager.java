@@ -27,7 +27,6 @@ public class DatabaseManager {
         }
     }
 
-
     public static DatabaseManager getInstance(){
         if (instance==null){
             instance = new DatabaseManager();
@@ -108,10 +107,11 @@ public class DatabaseManager {
     }
 
     public int getUserPostCount() {
+        String username = UserManager.getInstance().getCurrentUser();
         try {
-            String sql = "SELECT COUNT(*) FROM posts WHERE user_id = ?";
+            String sql = "SELECT COUNT(*) FROM posts WHERE username = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, userId);
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);

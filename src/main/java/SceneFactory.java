@@ -29,6 +29,7 @@ public class SceneFactory{
             case SETTINGS -> new SettingController().buildScene();
 //                    buildSettingPage(stage);
             case POST -> buildPostScene(stage);
+            case LOGOUT -> new LogoutController().buidScene();
         };
     }
 
@@ -145,7 +146,7 @@ public class SceneFactory{
 
         Rectangle box = new Rectangle(200, 100);
         box.setFill(Color.WHITE);
-        Label Post = new Label("Post: "+db.getUserPostCount(2));
+        Label Post = new Label("Post: "+db.getUserPostCount());
         StackPane infoBox = new StackPane(box, Post);
         infoBox.setAlignment(Pos.CENTER);
 

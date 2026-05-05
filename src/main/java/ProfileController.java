@@ -42,7 +42,7 @@ public class ProfileController {
         settingsBtn.setOnAction(e ->
                 SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
         db.insertTestPost(1);
-        int postCount = db.getUserPostCount(1);
+        int postCount = db.getUserPostCount();
         Label postNumber = new Label(String.valueOf(postCount));
         Label post = new Label("Post: ");
         VBox Post = new VBox(5,post,postNumber);
