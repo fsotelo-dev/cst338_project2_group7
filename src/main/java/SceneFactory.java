@@ -3,6 +3,7 @@
  * @since Assignment: Inferior
  **/
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -27,6 +28,7 @@ public class SceneFactory{
             case PROFILE -> buildProfilePage(stage);
             case SETTINGS -> new SettingController().buildScene();
 //                    buildSettingPage(stage);
+            case POST -> buildPostScene(stage);
         };
     }
 
@@ -169,5 +171,15 @@ public class SceneFactory{
         VBox layout = new VBox(20, title, home);
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
+    }
+
+    public static Scene buildPostScene(Stage stage) {
+        try {
+            FXMLLoader load = new FXMLLoader(SceneFactory.class.getResource("/PostScene.fxml"));
+            return new Scene(load.load(), 800, 600);
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }
