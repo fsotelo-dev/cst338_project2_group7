@@ -20,43 +20,45 @@ public class ProfileController {
 
     }
     public static Scene buildScene(){
+
         Label title = new Label("Inferior");
         title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
 
-        Circle circle = new Circle(43);
-        circle.setFill(Color.BLACK);
 
-        javafx.scene.image.Image image = new Image("https://random-d.uk/api/randomimg");
-        ImageView imageViewer = new ImageView(image);
-        imageViewer.setFitWidth(80);
-        imageViewer.setFitHeight(80);
+        Circle avatarBackground = new Circle(43);
+        avatarBackground.setFill(Color.BLACK);
 
-        Circle clip = new Circle(40,40,40);
-        imageViewer.setClip(clip);
-        StackPane profilePic = new StackPane(circle, imageViewer);
-        DatabaseManager db = DatabaseManager.getInstance();
+        Image avatarImage = new Image("https://random-d.uk/api/randomimg");
+        ImageView avatarView = new ImageView(avatarImage);
+        avatarView.setFitWidth(80);
+        avatarView.setFitHeight(80);
+        avatarView.setClip(new Circle(40, 40, 40));
 
-        Rectangle box = new Rectangle(200, 100);
-        box.setFill(Color.WHITE);
+        StackPane profilePic = new StackPane(avatarBackground, avatarView);
+
+        String currentUser = UserManager.getInstance().getCurrentUser();
+        Label helloLabel = new Label("Hello, " + currentUser + "!");
+        helloLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        int postCount = DatabaseManager.getInstance().getUserPostCount();
+
+        Label postCountLabel = new Label("Posts: " + postCount);
+        postCountLabel.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+
+
         Button settingsBtn = new Button("Settings");
         settingsBtn.setOnAction(e ->
                 SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
-        db.insertTestPost(1);
-        int postCount = db.getUserPostCount();
-        Label postNumber = new Label(String.valueOf(postCount));
-        Label post = new Label("Post: ");
-        VBox Post = new VBox(5,post,postNumber);
 
-        Post.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
-        Post.setAlignment(Pos.CENTER);
-
-        Button home = new Button("Home");
-        home.setOnAction(e ->
+        Button homeBtn = new Button("Home");
+        homeBtn.setOnAction(e ->
                 SceneManager.getInstance().navigateTo(SceneType.MAIN));
-        home.setAlignment(Pos.BOTTOM_RIGHT);
 
-        VBox layout = new VBox(20, title, profilePic, settingsBtn,Post,home);
+
+        VBox layout = new VBox(20, title, profilePic, helloLabel, postCountLabel, settingsBtn, homeBtn);
         layout.setAlignment(Pos.CENTER);
+
         return new Scene(layout, 800, 600);
     }
+
 }
