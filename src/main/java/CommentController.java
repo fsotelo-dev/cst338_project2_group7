@@ -9,11 +9,7 @@ public class CommentController {
     @FXML
     private TextArea commentInput;
 
-    private int selectedPost;
-
-    public void setSelectedPost(int postID){
-        selectedPost = postID;
-    }
+    private int selectedPost = 1;
     public CommentController(){
 
     }
