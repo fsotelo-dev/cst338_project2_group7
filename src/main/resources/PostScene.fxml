@@ -6,9 +6,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="PostController"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="PostController"
+      spacing="15"
+      alignment="TOP_LEFT"
+      style="-fx-padding: 20;">
 
-</AnchorPane>
+<!--    <Button text="Profile"-->
+<!--            onAction="#handleProfile"/>-->
+    <Label fx:id="postUsernameLabel"
+           text="Username"/>
+    <Label fx:id="postHeadLabel"
+           text="Post Title"
+           style="-fx-font-weight: bold;"/>
+    <Label fx:id="postBodyLabel"
+           text="Post goes here"
+           wrapText="true"/>
+<!--    <HBox spacing="10">-->
+<!--        <Button text="Like"
+                    onAction="#handleLike"/>-->
+<!--        <Label fx:id="likeCountLabel"
+                   text="0 likes"/>-->
+<!--        <Button text="Create Comment"
+                    onAction="#handleCreateComment"/>-->
+<!--    </HBox>-->
+    <Label text="Comments:"/>
+    <ListView fx:id="commentsListView"
+              prefHeight="200"/>
+<!--    <Button text="Back"-->
+<!--            onAction="#handleBack"/>-->
+
+</VBox>
