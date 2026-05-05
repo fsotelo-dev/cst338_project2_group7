@@ -6,8 +6,8 @@ import java.sql.SQLOutput;
 public class PostDAO {
     private final Connection connection;
 
-    public PostDAO(Connection connection) {
-        this.connection = connection;
+    public PostDAO() {
+        this.connection = DatabaseManager.getInstance().getConnection();
     }
 
     /**
