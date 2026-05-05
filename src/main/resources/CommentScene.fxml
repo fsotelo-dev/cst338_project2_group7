@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="CommentController"
+        spacing="15"
+        style="-fx-padding: 20;">
+
+    <Label text="Inferior"
+           style="-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;"
+           maxWidth="Infinity"/>
+
+    <Separator/>
+
+    <HBox spacing="15">
+        <VBox spacing="20" prefWidth="200">
+            <Button text="Profile"
+                    onAction="#profile"/>
+
+            <Button text="Back"
+                    onAction="#back"/>
+        </VBox>
+        <Separator orientation="VERTICAL"
+                   prefHeight="400"/>
+        <VBox spacing="15" alignment="CENTER" prefWidth="500">
+
+            <Label text="Create Comment"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+            <TextArea fx:id="commentInput"
+                      promptText="Write anything..."
+                      prefHeight="150"
+                      prefWidth="300"/>
+
+            <HBox spacing="10">
+                <Button text="Post"
+                        onAction="#postComment"/>
+            </HBox>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>

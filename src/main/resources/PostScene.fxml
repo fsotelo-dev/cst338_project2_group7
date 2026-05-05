@@ -52,8 +52,8 @@
                         onAction="#like"/>
                 <Label fx:id="likeCountLabel"
                        text="0 Likes"/>
-<!--                <Button text="Create Comment"-->
-<!--                        onAction="#createComment"/>-->
+                <Button text="Create Comment"
+                        onAction="#createComment"/>
             </HBox>
             <Label text="Comments:"/>
             <ListView fx:id="commentsListView"
