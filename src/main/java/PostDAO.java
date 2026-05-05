@@ -6,20 +6,20 @@ import java.sql.SQLOutput;
 public class PostDAO {
     private final Connection connection;
 
-    public PostDAO() {
+    public PostDAO(){
         this.connection = DatabaseManager.getInstance().getConnection();
     }
 
     /**
      * addPost(Int String String String)
      */
-    public boolean addPost(int userId, String username, String head, String body){
-        String sql = "INSERT INTO posts(user_id, username, head, body) VALUES(?, ?, ?, ?)";
+    public boolean addPost(int userId, String username, String title, String body){
+        String sql = "INSERT INTO posts(user_id, username, tite, body) VALUES(?, ?, ?, ?)";
 
         try(PreparedStatement pstmt = connection.prepareStatement(sql)){
             pstmt.setInt(1, userId);
             pstmt.setString(2, username);
-            pstmt.setString(3, head);
+            pstmt.setString(3, title);
             pstmt.setString(4, body);
             pstmt.executeUpdate();
 
