@@ -19,8 +19,8 @@ public class SceneFactory{
 //    method is the public entry point method creates scene by SceneType in enum class
     public static Scene create(SceneType type, Stage stage){
         return switch(type){
-            case LOGIN -> buildLoginScene(stage);
-            //case LOGIN -> new LoginController().buildScene();
+//            case LOGIN -> buildLoginScene(stage);
+            case LOGIN -> new LoginController().buildScene();
             case SIGNUP -> new SignupController().buildScene();
 //            case MAIN -> new MainController().buildScene();
             case MAIN -> buildMAINScene(stage);
