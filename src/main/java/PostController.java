@@ -56,4 +56,3 @@ public class PostController {
 //        SceneManager.getInstance().navigateTo(SceneType.COMMENT);
 //    }
 }
-}

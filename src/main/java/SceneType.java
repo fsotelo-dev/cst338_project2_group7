@@ -8,5 +8,6 @@ public enum SceneType {
     SIGNUP,
     PROFILE,
     SETTINGS,
-    POST;
+    POST,
+    LOGOUT;
 }
