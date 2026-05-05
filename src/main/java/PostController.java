@@ -26,12 +26,6 @@ public class PostController {
 
     @FXML
     public void initialize() {
-        postUsernameLabel.setText("Devin");
-        postTierLabel.setText("Rich");
-
-        postHeadLabel.setText("Test Post Title");
-        postBodyLabel.setText("This is a test post loaded from PostController.");
-
         comments();
     }
 

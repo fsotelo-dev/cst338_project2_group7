@@ -20,7 +20,8 @@ public class CommentController {
         }
 
         CommentDAO commentDAO = new CommentDAO();
-        commentDAO.addComment(selectedPost, "Devin", text);
+        String username = Main.userManager.getCurrentUser();
+        commentDAO.addComment(selectedPost, username, text);
 
         // after comment uploaded go back to post scene
         SceneManager.getInstance().navigateTo(SceneType.POST);
