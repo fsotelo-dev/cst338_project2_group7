@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
+
 public class SceneFactory{
 //    method is the public entry point method creates scene by SceneType in enum class
     public static Scene create(SceneType type, Stage stage){
@@ -29,6 +31,7 @@ public class SceneFactory{
             case SETTINGS -> new SettingController().buildScene();
 //                    buildSettingPage(stage);
             case POST -> buildPostScene(stage);
+            case COMMENT -> buildCommentScene(stage);
         };
     }
 
@@ -243,6 +246,17 @@ public class SceneFactory{
         } catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static Scene buildCommentScene(Stage stage) {
+        try {
+            return new Scene(
+                    FXMLLoader.load(Objects.requireNonNull(SceneFactory.class.getResource("/CommentScene.fxml"))),
+                    800, 600
+            );
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

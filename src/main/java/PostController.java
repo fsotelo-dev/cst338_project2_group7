@@ -52,7 +52,7 @@ public class PostController {
         likeCountLabel.setText(likeCount + " Likes");
     }
 
-//    @FXML void createComment(){
-//        SceneManager.getInstance().navigateTo(SceneType.COMMENT);
-//    }
+    @FXML void createComment(){
+        SceneManager.getInstance().navigateTo(SceneType.COMMENT);
+    }
 }
