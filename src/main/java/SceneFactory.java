@@ -25,7 +25,8 @@ public class SceneFactory{
 //            case MAIN -> new MainController().buildScene();
             case MAIN -> buildMAINScene(stage);
             case PROFILE -> buildProfilePage(stage);
-            case SETTINGS -> buildSettingPage(stage);
+            case SETTINGS -> new SettingController().buildScene();
+//                    buildSettingPage(stage);
         };
     }
 

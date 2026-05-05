@@ -18,7 +18,7 @@ public class UserDAOTest {
         Statement stmt = connection.createStatement();
         stmt.execute("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL)");
 
-        df = new UserDAO(connection);
+        df = new UserDAO();
     }
 
 //    @Test
