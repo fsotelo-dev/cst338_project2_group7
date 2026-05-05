@@ -38,16 +38,24 @@ public class ProfileController {
 
         Rectangle box = new Rectangle(200, 100);
         box.setFill(Color.WHITE);
-        Label Post = new Label("Post: "+db.getUserPostCount());
-        StackPane infoBox = new StackPane(box, Post);
-        infoBox.setAlignment(Pos.CENTER);
+        Button settingsBtn = new Button("Settings");
+        settingsBtn.setOnAction(e ->
+                SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
+        db.insertTestPost(1);
+        int postCount = db.getUserPostCount(1);
+        Label postNumber = new Label(String.valueOf(postCount));
+        Label post = new Label("Post: ");
+        VBox Post = new VBox(5,post,postNumber);
+
+        Post.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+        Post.setAlignment(Pos.CENTER);
 
         Button home = new Button("Home");
         home.setOnAction(e ->
                 SceneManager.getInstance().navigateTo(SceneType.MAIN));
         home.setAlignment(Pos.BOTTOM_RIGHT);
 
-        VBox layout = new VBox(20, title, profilePic, infoBox, home);
+        VBox layout = new VBox(20, title, profilePic, settingsBtn,Post,home);
         layout.setAlignment(Pos.CENTER);
         return new Scene(layout, 800, 600);
     }

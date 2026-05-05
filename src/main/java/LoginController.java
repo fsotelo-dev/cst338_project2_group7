@@ -8,11 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class LoginController {
-    public LoginController(){
-
-    }
-    public static Scene buildScene(){
-            DatabaseManager db = DatabaseManager.getInstance();
+    private final UserManager userManager = UserManager.getInstance();
+    public Scene buildScene(){
+//            UserManager userManager = UserManager.getInstance();
+//            DatabaseManager db = DatabaseManager.getInstance();
             Label title = new Label("Inferior");
             title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
             title.setAlignment(Pos.TOP_CENTER);
@@ -24,7 +23,7 @@ public class LoginController {
             //FOR TESTING PURPOSES
             Button test = new Button("Test");
             test.setOnAction(e ->
-                    SceneManager.getInstance().navigateTo(SceneType.MAIN));
+                    SceneManager.getInstance().navigateTo(SceneType.PROFILE));
             test.setAlignment(Pos.TOP_LEFT);
 
             GridPane textLayout = new GridPane();
@@ -44,8 +43,9 @@ public class LoginController {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
 
-                UserDAO dbFunction = new UserDAO();
-                boolean loggedIn = dbFunction.userLogin(username, password);
+//                UserDAO dbFunction = new UserDAO();
+                boolean loggedIn = userManager.login(username, password);
+//                boolean loggedIn = dbFunction.userLogin(username, password);
 
                 if (loggedIn) {
                     SceneManager.getInstance().navigateTo(SceneType.MAIN);

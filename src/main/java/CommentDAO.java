@@ -1,47 +1,43 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
-public class PostDAO {
+public class CommentDAO {
     private final Connection connection;
 
-    public PostDAO() {
+    public CommentDAO() {
         this.connection = DatabaseManager.getInstance().getConnection();
     }
 
     /**
-     * addPost(Int String String String)
+     * addComment(Int String String)
      */
-    public boolean addPost(int userId, String username, String head, String body){
-        String sql = "INSERT INTO posts(user_id, username, head, body) VALUES(?, ?, ?, ?)";
-
-        try(PreparedStatement pstmt = connection.prepareStatement(sql)){
-            pstmt.setInt(1, userId);
-            pstmt.setString(2, username);
-            pstmt.setString(3, head);
-            pstmt.setString(4, body);
-            pstmt.executeUpdate();
-
-            return true;
-        }catch(SQLException e){
-            System.err.println("addPost failed" + e.getMessage());
-            return false;
-        }
-    }
-
-    /**
-     * deletePosts(int)
-     */
-    public boolean deletePost(int postId){
-        String sql = "DELETE FROM posts WHERE id = ?";
+    public boolean addComment(int postId, String username, String comment){
+        String sql = "INSERT INTO posts(user_id, username, head, body) VALUES(?, ?, ?)";
 
         try(PreparedStatement pstmt = connection.prepareStatement(sql)){
             pstmt.setInt(1, postId);
+            pstmt.setString(2, username);
+            pstmt.setString(3, comment);
+            pstmt.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.err.println("addComment failed" + e.getMessage());
+            return false;
+        }
+    }
+    /**
+     * deleteComments(int)
+     */
+    public boolean deletePost(int commentId){
+        String sql = "DELETE FROM comments WHERE id = ?";
+
+        try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+            pstmt.setInt(1, commentId);
             int AffectedR = pstmt.executeUpdate();
             return AffectedR>0; //False if user had no posts
         }catch(SQLException e){
-            System.err.println("deletePost Failed" + e.getMessage());
+            System.err.println("deleteComment Failed" + e.getMessage());
             return false;
         }
     }
