@@ -43,7 +43,7 @@ public class MainController {
                     "-fx-font-size: 15px; -fx-padding: 20 30;");
         }
 
-        feedBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGIN));
+        feedBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.POST));
         profileBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.PROFILE));
         settingsBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
         logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGOUT));
