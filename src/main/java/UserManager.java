@@ -1,12 +1,18 @@
 public class UserManager {
     private String currentUser;
     private final UserDAO userDAO;
+    private static UserManager instance;
 
-
-
-    public UserManager(UserDAO userDAO){
+    private UserManager(UserDAO userDAO){
         this.userDAO = userDAO;
     }
+    public static UserManager getInstance(){
+        if (instance==null){
+            instance = new UserManager(new UserDAO());
+        }
+        return instance;
+    }
+
     public String getCurrentUser() {
         return currentUser;
     }

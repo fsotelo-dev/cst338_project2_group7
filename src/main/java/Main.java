@@ -19,7 +19,8 @@ public class Main extends Application{
     public void start(Stage stage){
 
         DatabaseManager.getInstance();
-        userManager = new UserManager(new UserDAO());
+        userManager = UserManager.getInstance();
+//        userManager = new UserManager(new UserDAO());
         SceneManager.init(stage); //initialize singleton
         SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         stage.setTitle("Inferior app");
