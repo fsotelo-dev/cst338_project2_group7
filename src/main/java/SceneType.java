@@ -7,5 +7,6 @@ public enum SceneType {
     MAIN,
     SIGNUP,
     PROFILE,
-    SETTINGS;
+    SETTINGS,
+    POST;
 }

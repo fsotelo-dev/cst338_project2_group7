@@ -10,31 +10,56 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="PostController"
       spacing="15"
-      alignment="TOP_LEFT"
       style="-fx-padding: 20;">
 
-<!--    <Button text="Profile"-->
-<!--            onAction="#handleProfile"/>-->
-    <Label fx:id="postUsernameLabel"
-           text="Username"/>
-    <Label fx:id="postHeadLabel"
-           text="Post Title"
-           style="-fx-font-weight: bold;"/>
-    <Label fx:id="postBodyLabel"
-           text="Post goes here"
-           wrapText="true"/>
-<!--    <HBox spacing="10">-->
-<!--        <Button text="Like"
-                    onAction="#handleLike"/>-->
-<!--        <Label fx:id="likeCountLabel"
-                   text="0 likes"/>-->
-<!--        <Button text="Create Comment"
-                    onAction="#handleCreateComment"/>-->
-<!--    </HBox>-->
-    <Label text="Comments:"/>
-    <ListView fx:id="commentsListView"
-              prefHeight="200"/>
-<!--    <Button text="Back"-->
-<!--            onAction="#handleBack"/>-->
+    <Label text="Inferior"
+           style="-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;"
+           maxWidth="Infinity"/>
 
+    <Separator/>
+
+    <HBox spacing="15">
+        <VBox spacing="20" prefWidth="200">
+            <Button text="Profile"
+            onAction="#profile"/>
+            <Button text="Back"
+                    onAction="#back"/>
+        </VBox>
+        <Separator orientation="VERTICAL"
+                   prefHeight="430"/>
+
+        <VBox spacing="12" prefWidth="520">
+
+            <HBox spacing="10">
+                <Label fx:id="postUsernameLabel"
+                   text="Username"/>
+                <Label fx:id="postTierLabel"
+                       text="Tier"
+                       style="-fx-background-color: green;
+                              -fx-text-fill: white;
+                              -fx-padding: 4 10 4 10;
+                              -fx-background-radius: 12;
+                              -fx-font-weight: bold;"/>
+            </HBox>
+            <Label fx:id="postHeadLabel"
+                   text="Post Title"
+                   style="-fx-font-weight: bold;"/>
+            <Label fx:id="postBodyLabel"
+                   text="Post goes here"
+                   wrapText="true"/>
+            <HBox spacing="10" >
+                <Button text="Like"
+                        onAction="#like"/>
+                <Label fx:id="likeCountLabel"
+                       text="0 Likes"/>
+<!--                <Button text="Create Comment"-->
+<!--                        onAction="#createComment"/>-->
+            </HBox>
+            <Label text="Comments:"/>
+            <ListView fx:id="commentsListView"
+                      prefHeight="200"
+                      prefWidth="500"/>
+
+        </VBox>
+    </HBox>
 </VBox>
