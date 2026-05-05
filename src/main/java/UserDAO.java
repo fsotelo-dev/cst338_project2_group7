@@ -5,8 +5,8 @@ public class UserDAO {
 
     private final Connection connection;
     // constructor that connects to DatabaseManager
-    public UserDAO(Connection connection) {
-        this.connection = connection;
+    public UserDAO() {
+        this.connection = DatabaseManager.getInstance().getConnection();
     }
 
     // ToDo: insertUser(String , String )
@@ -94,6 +94,7 @@ public class UserDAO {
             ps.setString(1, username);
             ps.executeUpdate();
             return true;
+
         } catch(SQLException e) {
             System.out.println("deleteUser failed to delete: " + e.getMessage());
             return false;

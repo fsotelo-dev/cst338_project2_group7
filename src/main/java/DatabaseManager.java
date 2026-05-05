@@ -19,7 +19,9 @@ public class DatabaseManager {
 //           open (creates) app.db in the project root
             connection = DriverManager.getConnection(DB_URL);
             System.out.println("Database connected.");
-            createUserTables();   // set up schema on first run
+            createUserTables();// set up schema on first run
+            createPostTable();
+            createCommentTable();
         }catch (SQLException e){
             System.err.println("Connection failed: " + e.getMessage());
         }
@@ -77,7 +79,7 @@ public class DatabaseManager {
                 title         TEXT    NOT NULL,
                 body          TEXT    NOT NULL,
                 done          INTEGER NOT NULL DEFAULT 0,
-                created       TEXT    DEFAULT(datetime('now'))
+                created       TEXT    DEFAULT(datetime('now')),
                 FOREIGN KEY (user_id) REFERENCES users(id)
             )
             """;
@@ -87,6 +89,24 @@ public class DatabaseManager {
             System.err.println(" postTables failed : " + e . getMessage () ) ;
         }
     }
+    public void createCommentTable(){
+        String commentTable = """
+            CREATE TABLE IF NOT EXISTS comments (
+                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                post_id    INTEGER NOT NULL,
+                username   TEXT    NOT NULL,
+                comment    TEXT    NOT NULL,
+                created    TEXT    DEFAULT(datetime('now')),
+                FOREIGN KEY (post_id) REFERENCES posts(id)
+            )
+            """;
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(commentTable) ;
+        } catch (SQLException e) {
+            System.err.println(" commentTable failed : " + e . getMessage () ) ;
+        }
+    }
+
 //changed item  to table name | column name to username and password bec neither can be null
     public void insertItems(String name, String password){
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
@@ -127,6 +147,9 @@ public class DatabaseManager {
         }
     }
 
+    /** WHAT IS ITEMS should be users or post there is not table called items.
+     *
+     */
     public void deleteItem(int id) {
         String sql = " DELETE FROM items WHERE id = ? ";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -136,18 +159,27 @@ public class DatabaseManager {
             System.err.println(" deleteItem failed : " + e.getMessage());
         }
     }
-    public int getUserPostCount() {
+    public int getUserPostCount(int userId) {
         try {
-            String sql = "SELECT * FROM users WHERE Post = ?";
+            String sql = "SELECT COUNT(*) FROM posts WHERE user_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("getPostCount failed: " + e.getMessage());
         }
         return 0;
     }
-
+    public void insertTestPost(int userId) {
+        String sql = "INSERT INTO posts (user_id, username, title, body) VALUES (?, 'testUser', 'Test Title', 'Test Body')";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("insertTestPost failed: " + e.getMessage());
+        }
+    }
 }
