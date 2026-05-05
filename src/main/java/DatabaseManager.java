@@ -21,6 +21,7 @@ public class DatabaseManager {
             System.out.println("Database connected.");
             createUserTables();// set up schema on first run
             createPostTable();
+            createCommentTable();
         }catch (SQLException e){
             System.err.println("Connection failed: " + e.getMessage());
         }
@@ -86,6 +87,23 @@ public class DatabaseManager {
             stmt.execute(postTable) ;
         } catch (SQLException e) {
             System.err.println(" postTables failed : " + e . getMessage () ) ;
+        }
+    }
+    public void createCommentTable(){
+        String commentTable = """
+            CREATE TABLE IF NOT EXISTS comments (
+                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                post_id    INTEGER NOT NULL,
+                username   TEXT    NOT NULL,
+                comment    TEXT    NOT NULL,
+                created    TEXT    DEFAULT(datetime('now')),
+                FOREIGN KEY (post_id) REFERENCES posts(id)
+            )
+            """;
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(commentTable) ;
+        } catch (SQLException e) {
+            System.err.println(" commentTable failed : " + e . getMessage () ) ;
         }
     }
 
