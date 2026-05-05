@@ -10,9 +10,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.xerial:sqlite-jdbc:3.53.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:win:21" level="project" />
-    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:win:21" level="project" />
-    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:21" level="project" />
-    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:21" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:mac-aarch64:21" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:mac-aarch64:21" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:mac-aarch64:21" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:mac-aarch64:21" level="project" />
   </component>
 </module>

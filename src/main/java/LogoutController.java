@@ -27,7 +27,7 @@ public class LogoutController {
         Label title = new Label("Logout");
         title.setStyle("-fx-text-fill: white; -fx-font-size: 50px; -fx-font-weight: bold;");
         Label username = new Label(userManager.getCurrentUser());
-//        username.setStyle("-fx-text-fill: white; -fx-padding: 16px; -fx-font-size: 20;");
+        username.setStyle("-fx-text-fill: white; -fx-padding: 16px; -fx-font-size: 20;");
         Label logoutStmt = new Label("Leaving us already " + username.getText().trim() + "!");
         logoutStmt.setStyle("-fx-text-fill: white; -fx-padding: 16px;-fx-font-size: 20;");
 
@@ -47,26 +47,26 @@ public class LogoutController {
 
         VBox root = new VBox(20, title,logoutStmt, logoutBtn, gobackBtn);
         root.setAlignment(Pos.CENTER);
-//        root.setStyle("-fx-background-color: #141414");
+        root.setStyle("-fx-background-color: #141414");
 
         HBox frame = new HBox(50, logoView, root);
         frame.setAlignment(Pos.CENTER);
         frame.setStyle("-fx-background-color: #141414;");
 
-//        logoView.fitHeightProperty().bind(frame.widthProperty().multiply(0.40));
-//        logoView.setPreserveRatio(true);
-//        root.prefWidthProperty().bind(frame.widthProperty().multiply(0.60));
-//
-//        title.styleProperty().bind(frame.widthProperty().multiply(0.03).asString(
-//                "-fx-text-fill: white; -fx-font-weight:bold;"));
-//        logoutStmt.styleProperty().bind(frame.widthProperty().multiply(0.03).asString(
-//                "-fx-text-fill: white;"));
-//
-//        logoutBtn.prefWidthProperty().bind(root.widthProperty().multiply(0.));
-//        logoutBtn.prefHeightProperty().bind(root.heightProperty().multiply(0.08));
-//
-//        gobackBtn.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
-//        gobackBtn.prefHeightProperty().bind(root.heightProperty().multiply(0.18));
+        logoView.fitHeightProperty().bind(frame.widthProperty().multiply(0.40));
+        logoView.setPreserveRatio(true);
+        root.prefWidthProperty().bind(frame.widthProperty().multiply(0.60));
+
+        title.styleProperty().bind(frame.widthProperty().multiply(0.03).asString(
+                "-fx-text-fill: white; -fx-font-weight:bold;"));
+        logoutStmt.styleProperty().bind(frame.widthProperty().multiply(0.03).asString(
+                "-fx-text-fill: white;"));
+
+        logoutBtn.prefWidthProperty().bind(root.widthProperty().multiply(0.));
+        logoutBtn.prefHeightProperty().bind(root.heightProperty().multiply(0.08));
+
+        gobackBtn.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
+        gobackBtn.prefHeightProperty().bind(root.heightProperty().multiply(0.18));
 //
 //
 

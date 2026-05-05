@@ -1,9 +1,13 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class PostController {
+    public PostController(){
 
+    }
     @FXML
     private Label postUsernameLabel;
 
@@ -54,5 +58,14 @@ public class PostController {
         commentsListView.getItems().clear();
         CommentDAO commentDAO = new CommentDAO();
         commentsListView.getItems().addAll(commentDAO.getCommentsByPost(selectedPost));
+    }
+    public Scene buildScene(){
+        try {
+            FXMLLoader load = new FXMLLoader(SceneFactory.class.getResource("/PostScene.fxml"));
+            return new Scene(load.load(), 800, 600);
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }
