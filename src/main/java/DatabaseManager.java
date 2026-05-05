@@ -107,58 +107,6 @@ public class DatabaseManager {
         }
     }
 
-//changed item  to table name | column name to username and password bec neither can be null
-    public void insertItems(String name, String password){
-        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-            pstmt.setString(1, name);
-            pstmt.setString(2, password);
-
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("insertItem failed: " + e.getMessage()) ;
-        }
-
-    }
-
-    public List<String> getAllItems() {
-        List<String> items = new ArrayList<>();
-        String sql = "SELECT name FROM items WHERE done = 0 ORDER BY created DESC";
-
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {                              //move to next row
-                items.add(rs.getString("name")); //read column by name
-            }
-        } catch (SQLException e) {
-            System.err.println("getAllItems failed: " + e.getMessage());
-        }
-        return items;
-    }
-    public void markDone(int id){
-        String sql = "UPDATE items SET done = 1 WHERE id = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("markDone failed : " + e.getMessage());
-        }
-    }
-
-    /** WHAT IS ITEMS should be users or post there is not table called items.
-     *
-     */
-    public void deleteItem(int id) {
-        String sql = " DELETE FROM items WHERE id = ? ";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println(" deleteItem failed : " + e.getMessage());
-        }
-    }
     public int getUserPostCount() {
         try {
             String sql = "SELECT * FROM users WHERE Post = ?";
