@@ -23,7 +23,7 @@ public class LoginController {
             //FOR TESTING PURPOSES
             Button test = new Button("Test");
             test.setOnAction(e ->
-                    SceneManager.getInstance().navigateTo(SceneType.MAIN));
+                    SceneManager.getInstance().navigateTo(SceneType.PROFILE));
             test.setAlignment(Pos.TOP_LEFT);
 
             GridPane textLayout = new GridPane();
