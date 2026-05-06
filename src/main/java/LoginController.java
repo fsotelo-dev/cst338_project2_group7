@@ -18,10 +18,6 @@ public class LoginController {
             logoView.setPreserveRatio(true);
             logoView.setSmooth(true);
 
-            //Label logWelcome = new Label("Log into Inferior");
-            //logWelcome.setStyle("-fx-font-size:20px; -fx-font-weight: bold; -fx-text-fill: red");
-            //logWelcome.setAlignment(Pos.CENTER_LEFT);
-
             //FOR TESTING PURPOSES
             Button test = new Button("Test");
             test.setOnAction(e ->
