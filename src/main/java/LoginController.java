@@ -32,19 +32,20 @@ public class LoginController {
             TextField usernameField = new TextField();
             usernameField.setPromptText("Username");
             usernameField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill:" +
-                    " gray;-fx-border-color: #F35301");
+                    " #f40e0e;-fx-border-color: #F35301");
 
             TextField passwordField = new PasswordField();
             passwordField.setPromptText("Password");
-            passwordField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill: gray;");
+            passwordField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill: #F40E0EFF;");
 
             Button loginbutton = new Button( "      Log in     ");
-            loginbutton.setStyle("-fx-background-color: #F35301;-fx-text-fill: white");
+            loginbutton.setStyle("-fx-background-color: #F35301;-fx-text-fill: white;" +
+                    "-fx-background-radius: 12;-fx-border-radius: 12");
             loginbutton.setPrefWidth(250);
             loginbutton.setPrefHeight(50);
             Button signinButton = new Button("      Sign up page    ");
             signinButton.setStyle("-fx-background-color: black;-fx-border-color: #F35301;" +
-                    "-fx-text-fill: #F35301");
+                    "-fx-background-radius: 12;-fx-border-radius: 12;-fx-text-fill: #F35301");
         signinButton.setPrefWidth(250);
         signinButton.setPrefHeight(50);
             signinButton.setOnAction(e ->
