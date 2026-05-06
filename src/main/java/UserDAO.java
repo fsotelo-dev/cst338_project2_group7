@@ -48,17 +48,32 @@ public class UserDAO {
     }
 
     //ToDo: updatePassword(String , String )
+    public String getUserByPassword(String password) {
+        String sql = "SELECT password FROM users WHERE password = ?";
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, password);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+//                return "found: " + rs.getString("username");
+                return rs.getString("password");
+            }
+        } catch(SQLException e){
+            System.out.println("getUserByPassword failed to find: " + e.getMessage());
+        }
+        return null;
+    }
+
 
     //update method
     //change a users password
-    public boolean updatePassword(String username, String newPassword) {
-        String sql = "UPDATE users SET password = ? WHERE username = ?";
-//        if(username.isEmpty()||newPassword.isEmpty()){
+    public boolean updatePassword(String oldPassword, String newPassword) {
+        String sql = "UPDATE users SET password = ? WHERE password = ?";
+//        if(oldPassword.isEmpty()||newPassword.isEmpty()){
 //            return false;
 //        }
         try(PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, newPassword);
-            ps.setString(2, username);
+            ps.setString(2, oldPassword);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -142,8 +157,20 @@ public class UserDAO {
 
         return true;
     }
+    public String getUserRank(String username){
+        String sql = "SELECT rank FROM users WHERE username = ?";
+        try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                return rs.getString("rank");
+            }
+        }catch(SQLException e){
+            System.err.println("getUserRank failed: "+ e.getMessage());
 
-
+        }
+        return null;
+    }
 
 
 }
