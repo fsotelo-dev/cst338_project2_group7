@@ -121,13 +121,4 @@ public class DatabaseManager {
         }
         return 0;
     }
-    public void insertTestPost(int userId) {
-        String sql = "INSERT INTO posts (user_id, username, title, body) VALUES (?, 'testUser', 'Test Title', 'Test Body')";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, userId);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("insertTestPost failed: " + e.getMessage());
-        }
-    }
 }

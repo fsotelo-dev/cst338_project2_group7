@@ -10,5 +10,6 @@ public enum SceneType {
     SETTINGS,
     POST,
     COMMENT,
-    LOGOUT;
+    LOGOUT,
+    CREATE_POST;
 }
