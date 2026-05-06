@@ -21,7 +21,7 @@ public class SettingController {
 
 //        Username display (current)
         Label currentUsernameLabel = new Label("Current Username: " + userManager.getCurrentUser());
-        currentUsernameLabel.setStyle("-fx-text-fill: white; -fx-padding: 16px;");
+        currentUsernameLabel.setStyle("-fx-text-fill: red; -fx-padding: 16px;");
 //        username update field
         TextField newUsername = new TextField();
         newUsername.setPromptText("Enter new username");
@@ -48,7 +48,6 @@ public class SettingController {
 
         VBox layout = new VBox(20, settingLabel, currentUsernameLabel,newUsername,updateUsernameBtn,usernameMessage,backBtn);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #141414");
         return new Scene(layout, 800, 600);
 
     }

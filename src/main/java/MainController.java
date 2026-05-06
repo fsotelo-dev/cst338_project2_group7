@@ -31,7 +31,7 @@ public class MainController {
 
         HBox topBar = new HBox(15, logo, title);
         topBar.setAlignment(Pos.TOP_CENTER);  // pins logo to top
-        topBar.setStyle("-fx-background-color: black; -fx-padding: 10 20; " +
+        topBar.setStyle("-fx-padding: 10 20; " +
                 "-fx-border-color: #2a2a2a; -fx-border-width: 0 0 1 0;");
 
         Button feedBtn = new Button("My Feed");
