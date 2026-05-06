@@ -13,12 +13,13 @@ public class UserDAO {
 
     //insert method
     //adding a new user to the database
-    public boolean insertUser(String username, String password) {
-        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+    public boolean insertUser(String username, String password, String rank) {
+        String sql = "INSERT INTO users (username, password, rank) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
+            ps.setString(3, rank);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
