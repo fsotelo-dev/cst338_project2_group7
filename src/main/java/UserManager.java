@@ -30,11 +30,11 @@ public class UserManager {
      * signup checks if username exists and the signup connection logic
      * should it check if password is taken?
      */
-    public boolean signup(String username, String password){
+    public boolean signup(String username, String password, String rank){
         if(userDAO.getUserByUsername(username)!=null){
             return false;
         }
-        return userDAO.insertUser(username, password);
+        return userDAO.insertUser(username, password, rank);
     }
     /**
      * for settingController

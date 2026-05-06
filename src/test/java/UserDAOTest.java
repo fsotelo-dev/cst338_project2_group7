@@ -29,13 +29,13 @@ public class UserDAOTest {
 
     @Test
     public void testInsertUser(){
-        boolean test = df.insertUser("","" );
+        boolean test = df.insertUser("","" , "");
         assertTrue(test);
     }
 
     @Test
     public void testGetUserByUsername() {
-        df.insertUser("Devin", "password");
+        df.insertUser("Devin", "password", "low");
         String result = df.getUserByUsername("Devin");
         assertEquals("found: Devin", result);
     }
@@ -54,14 +54,14 @@ public class UserDAOTest {
 // test to check if typing the incorrect password makes the login not work
     @Test
     public void testLoginWithWrongPassword() {
-        df.insertUser("Devin", "correctPassword");
+        df.insertUser("Devin", "correctPassword", "low");
         boolean result = df.userLogin("Devin", "wrongPassword");
         assertFalse(result, "Login should fail with wrong password");
     }
 // test to check if logging in with the correct password takes user to next page
     @Test
     public void testLoginWithCorrectPassword() {
-        df.insertUser("Devin", "correctPassword");
+        df.insertUser("Devin", "correctPassword", "high");
         boolean result = df.userLogin("Devin", "correctPassword");
         assertTrue(result, "Login should succeed with correct password");
     }
