@@ -8,8 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * @author Inferior
- * created: 5/4/26
+ * created: 5/3/26
  * @since Assignment: App
  **/
 public class SignupController {
