@@ -31,16 +31,22 @@ public class LoginController {
             GridPane textLayout = new GridPane();
             TextField usernameField = new TextField();
             usernameField.setPromptText("Username");
-            usernameField.setStyle("-fx-text-fill: black");
+            usernameField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill:" +
+                    " gray;-fx-border-color: #F35301");
 
             TextField passwordField = new PasswordField();
             passwordField.setPromptText("Password");
-            passwordField.setStyle("-fx-text-fill: black");
+            passwordField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill: gray;");
 
             Button loginbutton = new Button( "      Log in     ");
-            loginbutton.setStyle("-fx-border-color: red;");
+            loginbutton.setStyle("-fx-background-color: #F35301;-fx-text-fill: white");
+            loginbutton.setPrefWidth(250);
+            loginbutton.setPrefHeight(50);
             Button signinButton = new Button("      Sign up page    ");
-            signinButton.setStyle("-fx-border-color: red;");
+            signinButton.setStyle("-fx-background-color: black;-fx-border-color: #F35301;" +
+                    "-fx-text-fill: #F35301");
+        signinButton.setPrefWidth(250);
+        signinButton.setPrefHeight(50);
             signinButton.setOnAction(e ->
                     SceneManager.getInstance().navigateTo(SceneType.SIGNUP));
 
@@ -55,6 +61,7 @@ public class LoginController {
                     SceneManager.getInstance().navigateTo(SceneType.MAIN);
                 }else{
                     loginStatus.setText("Incorrect username or password");
+                    loginStatus.setStyle("-fx-text-fill: white");
                 }
             });
 
@@ -64,7 +71,7 @@ public class LoginController {
             textLayout.setAlignment(Pos.CENTER);
 
             VBox layout = new VBox(25,logoView, textLayout, loginbutton, signinButton,test);
-            layout.setStyle("-fx-background-color: #090909");
+            layout.setStyle("-fx-background-color:black");
             layout.setAlignment(Pos.CENTER);
 
             return new Scene(layout, 800, 600);
