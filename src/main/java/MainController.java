@@ -23,13 +23,20 @@ public class MainController {
     public Scene buildScene() {
         Image fire = new Image(getClass().getResource("/ImagesInferior/logo.png").toExternalForm());
         ImageView logo = new ImageView(fire);
-        logo.setFitWidth(150);
+        logo.setFitWidth(100);
         logo.setPreserveRatio(true);
 
         HBox topBar = new HBox(15, logo);
         topBar.setAlignment(Pos.TOP_CENTER);  // pins logo to top
         topBar.setStyle("-fx-padding: 10 20; " +
                 "-fx-border-color: #2a2a2a; -fx-border-width: 0 0 1 0;");
+
+        WeatherService weatherService = new WeatherService();
+        Label weatherLabel = new Label();
+        weatherLabel.setText(weatherService.getWeather("Marina"));
+        VBox weatherBox = new VBox(5, weatherLabel);
+        weatherBox.setAlignment(Pos.TOP_LEFT);
+        weatherBox.setStyle("-fx-padding: 10;");
 
         Button feedBtn = new Button("My Feed");
         Button profileBtn = new Button("👤 Profile");
@@ -45,7 +52,7 @@ public class MainController {
         settingsBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.SETTINGS));
         logoutBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.LOGOUT));
 
-        VBox content = new VBox(25, feedBtn, profileBtn, settingsBtn, logoutBtn);
+        VBox content = new VBox(25, weatherBox, feedBtn, profileBtn, settingsBtn, logoutBtn);
         content.setAlignment(Pos.TOP_CENTER);
         content.setStyle("-fx-padding: 20;");
 
