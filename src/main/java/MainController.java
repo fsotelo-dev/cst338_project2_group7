@@ -29,22 +29,24 @@ public class MainController {
         HBox topBar = new HBox(15, logo);
         topBar.setAlignment(Pos.TOP_CENTER);  // pins logo to top
         topBar.setStyle("-fx-padding: 10 20; " +
-                "-fx-border-color: #2a2a2a; -fx-border-width: 0 0 1 0;");
+                "-fx-border-color: #F35301; -fx-border-width: 0 0 1 0;");
 
         WeatherService weatherService = new WeatherService();
         Label weatherLabel = new Label();
+        weatherLabel.setStyle("-fx-text-fill: white");
         weatherLabel.setText(weatherService.getWeather("Marina"));
         VBox weatherBox = new VBox(5, weatherLabel);
         weatherBox.setAlignment(Pos.TOP_LEFT);
-        weatherBox.setStyle("-fx-padding: 10;");
+        weatherBox.setStyle("-fx-padding: 15;");
 
         Button feedBtn = new Button("My Feed");
         Button profileBtn = new Button("👤 Profile");
         Button settingsBtn = new Button("⚙️ Settings");
         Button logoutBtn = new Button("⏻  Log Out");
         for(Button btn: new Button[]{feedBtn, profileBtn, settingsBtn, logoutBtn}){
-            btn.setStyle("-fx-text-fill: black; " +
-                    "-fx-font-size: 15px; -fx-padding: 20 30;");
+            btn.setStyle("-fx-text-fill: white;-fx-background-color: #1a1d24;" +
+                    "-fx-border-color: #F35301;-fx-font-size: 15px; -fx-padding: 15 45;" +
+                    "-fx-background-radius: 12;-fx-border-radius: 12");
         }
 
         feedBtn.setOnAction(e -> SceneManager.getInstance().navigateTo(SceneType.POST));
@@ -59,6 +61,7 @@ public class MainController {
         BorderPane root = new BorderPane();
         root.setTop(topBar);     // logo + title sit here
         root.setCenter(content);   // nav buttons
+        root.setStyle("-fx-background-color: #0f1115");
 
         return new Scene(root, 800, 600);
     }
