@@ -2,6 +2,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostDAO {
     private final Connection connection;
@@ -44,5 +46,31 @@ public class PostDAO {
             System.err.println("deletePost Failed" + e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * get posts so that we can read posts
+     */
+    public List<String[]> getAllPosts() {
+        List<String[]> posts = new ArrayList<>();
+
+        String sql = "SELECT id, username, title, body FROM posts ORDER BY created DESC ";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            var data = pstmt.executeQuery();
+
+            while(data.next()) {
+                posts.add(new String[]{
+                        String.valueOf(data.getInt("id")),
+                        data.getString("username"),
+                        data.getString("title"),
+                        data.getString("body")
+                });
+            }
+        } catch (SQLException e) {
+            System.out.println("getAllPosts Failed " + e.getMessage());
+        }
+
+        return posts;
     }
 }

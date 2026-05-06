@@ -20,8 +20,8 @@
 
     <HBox spacing="15">
         <VBox spacing="20" prefWidth="200">
-            <Button text="Profile"
-            onAction="#profile"/>
+            <Button text="Create a Post"
+            onAction="#createPost"/>
             <Button text="Back"
                     onAction="#back"/>
         </VBox>

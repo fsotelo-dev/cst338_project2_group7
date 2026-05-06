@@ -30,6 +30,7 @@ public class SceneFactory{
             case POST -> new PostController().buildScene();
             case COMMENT -> new CommentController().buildScene();
             case LOGOUT -> new LogoutController().buidScene();
+            case CREATE_POST -> CreatePostController.buildScene();
         };
     }
 }

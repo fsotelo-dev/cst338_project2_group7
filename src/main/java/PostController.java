@@ -26,10 +26,9 @@ public class PostController {
     public void back() {
         SceneManager.getInstance().navigateTo(SceneType.MAIN);
     }
-// ToDo: REPLACE THIS PROFILE BUTTON METHOD WITH CREATE POST BUTTON METHOD WHEN CREATED
     @FXML
-    public void profile() {
-        SceneManager.getInstance().navigateTo(SceneType.PROFILE);
+    public void createPost() {
+        SceneManager.getInstance().navigateTo(SceneType.CREATE_POST);
     }
 
     private void showEmptyState() {

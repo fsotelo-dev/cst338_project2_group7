@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="CreatePostController"
+        spacing="15"
+        style="-fx-padding: 20;">
+
+    <Label text="Inferior"
+           style="-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;"
+           maxWidth="Infinity"/>
+
+    <Separator/>
+
+    <HBox spacing="15">
+        <VBox spacing="20" prefWidth="200">
+            <Button text="Back"
+                    onAction="#back"/>
+        </VBox>
+        <Separator orientation="VERTICAL"
+                   prefHeight="400"/>
+        <VBox spacing="15" alignment="CENTER" prefWidth="500">
+            <Label text="Create Post"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+            <TextField fx:id="titleInput"
+                       promptText="Post Title"
+                       prefWidth="300"/>
+
+            <TextArea fx:id="bodyInput"
+                      promptText="Write your post..."
+                      prefHeight="150"
+                      prefWidth="300"/>
+
+            <HBox spacing="10">
+                <Button text="Post"
+                        onAction="#createPost"/>
+            </HBox>
+        </VBox>
+
+    </HBox>
+
+</VBox>
