@@ -142,8 +142,20 @@ public class UserDAO {
 
         return true;
     }
+    public String getUserRank(String username){
+        String sql = "SELECT rank FROM users WHERE username = ?";
+        try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                return rs.getString("rank");
+            }
+        }catch(SQLException e){
+            System.err.println("getUserRank failed: "+ e.getMessage());
 
-
+        }
+        return null;
+    }
 
 
 }
