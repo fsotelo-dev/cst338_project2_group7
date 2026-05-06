@@ -1,5 +1,6 @@
 public class UserManager {
     private String currentUser;
+    private String currentUserPassword;
     private final UserDAO userDAO;
     private static UserManager instance;
 
@@ -16,6 +17,9 @@ public class UserManager {
     public String getCurrentUser() {
         return currentUser;
     }
+    public String getCurrentUserPassword() {
+        return currentUserPassword;
+    }
     /**
      * Login connection
      */
@@ -23,6 +27,7 @@ public class UserManager {
         boolean loginSuccessfulStatus = userDAO.userLogin(username, password);
         if(loginSuccessfulStatus){
             currentUser = username;
+            currentUserPassword = password;
         }
         return loginSuccessfulStatus;
     }
@@ -41,7 +46,12 @@ public class UserManager {
      * update password
      */
     public boolean updatePassword(String newPassword){
-        if(currentUser ==null) return false;
+        if(currentUserPassword ==null) return false;
+        if(userDAO.getUserByPassword(newPassword)!=null){
+            return false;
+        }
+        boolean updateSuccessfulStatus = userDAO.updatePassword(currentUserPassword, newPassword);
+        if(updateSuccessfulStatus)currentUserPassword = newPassword;
         return userDAO.updatePassword(currentUser, newPassword);
     }
     /**
