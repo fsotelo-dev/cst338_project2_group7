@@ -38,6 +38,9 @@ public class SignupController {
         passwordField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill: #F40E0EFF;" +
                 "-fx-background-radius: 12;-fx-border-radius: 12");
 
+        Label incomeChoice = new Label("Income Range:");
+        incomeChoice.setStyle("-fx-font-size: 14px;");
+        incomeChoice.setId("incomeChoice");
 
         Label incomeChoice = new Label("Income Range:");
         incomeChoice.setStyle("-fx-font-size: 14px;-fx-text-fill: #F40E0EFF");

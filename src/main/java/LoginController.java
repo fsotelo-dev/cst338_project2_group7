@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class LoginController {
+
     private final UserManager userManager = UserManager.getInstance();
     public Scene buildScene(){
             Image logo = new Image(getClass().getResource("/ImagesInferior/logo3.png").toExternalForm());
@@ -27,11 +28,13 @@ public class LoginController {
             GridPane textLayout = new GridPane();
             TextField usernameField = new TextField();
             usernameField.setPromptText("Username");
+            usernameField.setId("usernameField");
             usernameField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill:" +
                     " #f40e0e;-fx-border-color: #F35301");
 
             TextField passwordField = new PasswordField();
             passwordField.setPromptText("Password");
+            passwordField.setId("passwordField");
             passwordField.setStyle("-fx-background-color: #1a1d24;-fx-text-fill: #F40E0EFF;");
 
             Button loginbutton = new Button( "      Log in     ");
@@ -39,7 +42,9 @@ public class LoginController {
                     "-fx-background-radius: 12;-fx-border-radius: 12");
             loginbutton.setPrefWidth(250);
             loginbutton.setPrefHeight(50);
+            loginbutton.setId("loginButton");
             Button signinButton = new Button("      Sign up page    ");
+            signinButton.setId("signinButton");
             signinButton.setStyle("-fx-background-color: black;-fx-border-color: #F35301;" +
                     "-fx-background-radius: 12;-fx-border-radius: 12;-fx-text-fill: #F35301");
         signinButton.setPrefWidth(250);
@@ -48,6 +53,7 @@ public class LoginController {
                     SceneManager.getInstance().navigateTo(SceneType.SIGNUP));
 
             Label loginStatus = new Label();
+            loginStatus.setId("loginStatus");
             loginbutton.setOnAction(e -> {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
