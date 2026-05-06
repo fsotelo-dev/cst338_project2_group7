@@ -21,15 +21,12 @@ import java.awt.*;
 public class MainController {
 
     public Scene buildScene() {
-        Image fire = new Image(getClass().getResource("/ImagesInferior/fireEmoji.png").toExternalForm());
+        Image fire = new Image(getClass().getResource("/ImagesInferior/logo.png").toExternalForm());
         ImageView logo = new ImageView(fire);
-        logo.setFitWidth(50);
+        logo.setFitWidth(150);
         logo.setPreserveRatio(true);
 
-        Label title = new Label("Inferior");
-        title.setStyle("-fx-text-fill: red; -fx-font-size: 50px; -fx-font-weight: bold;");
-
-        HBox topBar = new HBox(15, logo, title);
+        HBox topBar = new HBox(15, logo);
         topBar.setAlignment(Pos.TOP_CENTER);  // pins logo to top
         topBar.setStyle("-fx-padding: 10 20; " +
                 "-fx-border-color: #2a2a2a; -fx-border-width: 0 0 1 0;");
