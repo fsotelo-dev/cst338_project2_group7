@@ -6,31 +6,22 @@ import javafx.scene.control.TextArea;
 import java.util.Objects;
 
 public class CommentController {
+
     @FXML
     private TextArea commentInput;
 
-    private int selectedPost;
-
-    public void setSelectedPost(int postID){
-        selectedPost = postID;
-    }
-    public CommentController(){
-
-    }
+    public CommentController() {}
 
     @FXML
     public void postComment() {
-        String text = commentInput.getText();
+        String text = commentInput.getText().trim();
 
-        if (text == null || text.isEmpty()) {
-            return;
-        }
+        if (text.isEmpty()) return;
 
+        String username = UserManager.getInstance().getCurrentUser();
         CommentDAO commentDAO = new CommentDAO();
-        String username = Main.userManager.getCurrentUser();
-        commentDAO.addComment(selectedPost, username, text);
+        commentDAO.addComment(PostController.selectedPostId, username, text);
 
-        // after comment uploaded go back to post scene
         SceneManager.getInstance().navigateTo(SceneType.POST);
     }
 
@@ -44,10 +35,11 @@ public class CommentController {
         SceneManager.getInstance().navigateTo(SceneType.PROFILE);
     }
 
-    public Scene buildScene(){
+    public Scene buildScene() {
         try {
             return new Scene(
-                    FXMLLoader.load(Objects.requireNonNull(SceneFactory.class.getResource("/CommentScene.fxml"))),
+                    FXMLLoader.load(Objects.requireNonNull(
+                            SceneFactory.class.getResource("/CommentScene.fxml"))),
                     800, 600
             );
         } catch (Exception e) {
